@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Курилка — Кафе у Аркаши</title>
+
+    <style>
+        body {
+            background-color: #4a4038;
+            color: #f5eadb;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #f3c98b;
+        }
+
+        nav a {
+            color: #ffd9a0;
+            text-decoration: none;
+        }
+
+        .smoking-room {
+            background-color: #2f2925;
+            width: 650px;
+            padding: 25px;
+            margin: 30px auto;
+            border: 2px solid #8b6b4a;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px #222;
+        }
+
+        .message {
+            background-color: #3b342f;
+            padding: 15px;
+            margin-top: 20px;
+            border-left: 5px solid #b58a5a;
+            border-radius: 8px;
+        }
+
+        .author {
+            color: #f3c98b;
+            font-weight: bold;
+        }
+        .login-box {
+    background-color: #3b342f;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 8px;
+}
+
+.login-box input {
+    padding: 10px;
+    width: 60%;
+}
+
+.login-box button {
+    padding: 10px 15px;
+    cursor: pointer;
+}
+.people-box {
+    background-color: #3b342f;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 8px;
+}
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Курилка</h1>
+
+        <p>Здесь можно присесть, поговорить и поделиться своими историями.</p>
+
+        <nav>
+            <a href="index.html">Главная</a> |
+            <a href="recipes.html">Рецепты</a> |
+            <a href="#">Советы</a> |
+            <a href="#">Курилка</a>
+        </nav>
+    </header>
+
+    <div class="smoking-room">
+
+        <h2>Разговоры без галстуков</h2>
+
+        <p>
+            Здесь никто никуда не спешит.
+            Можно обсудить кофе, жизнь, работу и всё, что пришло в голову.
+        </p>
+
+        <div class="message">
+            <p class="author">Аркаша:</p>
+            <p>Ну что, кто первый зашёл в Курилку?</p>
+        </div>
+
+        <div class="message">
+            <p class="author">Анжела:</p>
+            <p>Я только на минутку. У меня кофе убежит.</p>
+        </div>
+     <h3>Зайти в Курилку</h3>
+
+    <input type="text" id="username" placeholder="Введите имя или ник">
+
+    <button onclick="enterSmokingRoom()">Войти</button>
+
+    <p id="welcome"></p>
+    </div>
+    <div class="people-box">
+    <h3>Сейчас в Курилке</h3>
+    <div class="chat-box">
+
+    <h3>Сказать что-нибудь</h3>
+
+    <input type="text"
+           id="message"
+           placeholder="Напишите сообщение">
+
+    <button onclick="sendMessage()">Отправить</button>
+
+</div>
+
+<div id="chat-messages"></div>
+
+    <ul id="people-list">
+        <li>Аркаша</li>
+        <li>Анжела</li>
+    </ul>
+</div>
+<script>
+   let currentUser = localStorage.getItem("smokingRoomUser") || "";
+
+    function enterSmokingRoom() {
+
+        let name = document.getElementById("username").value.trim();
+
+        if (name === "") {
+            document.getElementById("welcome").textContent =
+                "Сначала представьтесь.";
+            return;
+        }
+
+        currentUser = name;
+
+        localStorage.setItem("smokingRoomUser", name);
+
+        document.getElementById("welcome").textContent =
+            "Добро пожаловать в Курилку, " + name + "!";
+
+        document.getElementById("username").value = name;
+
+        addPersonToList(name);
+    }
+
+
+    function addPersonToList(name) {
+
+        let peopleList = document.getElementById("people-list");
+
+        let people = peopleList.getElementsByTagName("li");
+
+        for (let person of people) {
+            if (person.textContent === name) {
+                return;
+            }
+        }
+
+        let newPerson = document.createElement("li");
+        newPerson.textContent = name;
+
+        peopleList.appendChild(newPerson);
+    }
+
+
+    function sendMessage() {
+
+        let message = document.getElementById("message").value.trim();
+
+        if (currentUser === "") {
+            alert("Сначала зайдите в Курилку.");
+            return;
+        }
+
+        if (message === "") {
+            alert("Напишите сообщение.");
+            return;
+        }
+
+        let messages =
+            JSON.parse(localStorage.getItem("smokingRoomMessages")) || [];
+
+        messages.push({
+            author: currentUser,
+            text: message
+        });
+
+        localStorage.setItem(
+            "smokingRoomMessages",
+            JSON.stringify(messages)
+        );
+
+        showMessage(currentUser, message);
+
+        document.getElementById("message").value = "";
+    }
+
+
+    function showMessage(author, text) {
+
+        let newMessage = document.createElement("div");
+        newMessage.className = "message";
+
+        let authorLine = document.createElement("p");
+        authorLine.className = "author";
+        authorLine.textContent = author + ":";
+
+        let messageLine = document.createElement("p");
+        messageLine.textContent = text;
+
+        newMessage.appendChild(authorLine);
+        newMessage.appendChild(messageLine);
+
+        document.getElementById("chat-messages")
+            .appendChild(newMessage);
+    }
+
+
+    function loadSmokingRoom() {
+
+        if (currentUser !== "") {
+
+            document.getElementById("username").value = currentUser;
+
+            document.getElementById("welcome").textContent =
+                "С возвращением в Курилку, " + currentUser + "!";
+
+            addPersonToList(currentUser);
+        }
+
+        let messages =
+            JSON.parse(localStorage.getItem("smokingRoomMessages")) || [];
+
+        for (let message of messages) {
+            showMessage(message.author, message.text);
+        }
+    }
+
+
+    loadSmokingRoom();
+</script>
+</body>
+
+</html>
