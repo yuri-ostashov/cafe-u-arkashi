@@ -48,28 +48,27 @@
             color: #f3c98b;
             font-weight: bold;
         }
-        .login-box {
-    background-color: #3b342f;
-    padding: 15px;
-    margin: 20px 0;
-    border-radius: 8px;
-}
 
-.login-box input {
-    padding: 10px;
-    width: 60%;
-}
+        .login-box,
+        .people-box,
+        .chat-box {
+            background-color: #3b342f;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
 
-.login-box button {
-    padding: 10px 15px;
-    cursor: pointer;
-}
-.people-box {
-    background-color: #3b342f;
-    padding: 15px;
-    margin: 20px 0;
-    border-radius: 8px;
-}
+        .login-box input,
+        .chat-box input {
+            padding: 10px;
+            width: 60%;
+        }
+
+        .login-box button,
+        .chat-box button {
+            padding: 10px 15px;
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -106,156 +105,265 @@
             <p class="author">Анжела:</p>
             <p>Я только на минутку. У меня кофе убежит.</p>
         </div>
-     <h3>Зайти в Курилку</h3>
 
-    <input type="text" id="username" placeholder="Введите имя или ник">
+        <div class="login-box">
+            <h3>Зайти в Курилку</h3>
 
-    <button onclick="enterSmokingRoom()">Войти</button>
+            <input
+                type="text"
+                id="username"
+                placeholder="Введите имя или ник"
+            >
 
-    <p id="welcome"></p>
+            <button id="login-button">Войти</button>
+
+            <p id="welcome"></p>
+        </div>
+
+        <div class="people-box">
+            <h3>Сейчас в Курилке</h3>
+
+            <ul id="people-list">
+                <li>Аркаша</li>
+                <li>Анжела</li>
+            </ul>
+        </div>
+
+        <div class="chat-box">
+            <h3>Сказать что-нибудь</h3>
+
+            <input
+                type="text"
+                id="message"
+                placeholder="Напишите сообщение"
+            >
+
+            <button id="send-button">Отправить</button>
+        </div>
+
+        <div id="chat-messages"></div>
+
     </div>
-    <div class="people-box">
-    <h3>Сейчас в Курилке</h3>
-    <div class="chat-box">
 
-    <h3>Сказать что-нибудь</h3>
 
-    <input type="text"
-           id="message"
-           placeholder="Напишите сообщение">
+    <script type="module">
 
-    <button onclick="sendMessage()">Отправить</button>
+        import { initializeApp }
+        from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
 
-</div>
+        import {
+            getDatabase,
+            ref,
+            push,
+            onChildAdded,
+            serverTimestamp
+        }
+        from "https://www.gstatic.com/firebasejs/12.18.0/firebase-database.js";
 
-<div id="chat-messages"></div>
 
-    <ul id="people-list">
-        <li>Аркаша</li>
-        <li>Анжела</li>
-    </ul>
-</div>
-<script>
-   let currentUser = localStorage.getItem("smokingRoomUser") || "";
+        const firebaseConfig = {
+            apiKey: "AIzaSyB60yxDm_FgW7JmeYAAr1covhkFaGk8-k8",
+            authDomain: "cafe-u-arkashi.firebaseapp.com",
+            databaseURL: "https://cafe-u-arkashi-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "cafe-u-arkashi",
+            storageBucket: "cafe-u-arkashi.firebasestorage.app",
+            messagingSenderId: "589764953441",
+            appId: "1:589764953441:web:08ef627e7ef399e13b3120"
+        };
 
-    function enterSmokingRoom() {
 
-        let name = document.getElementById("username").value.trim();
+        const app = initializeApp(firebaseConfig);
 
-        if (name === "") {
+        const database = getDatabase(app);
+
+        const messagesRef = ref(database, "messages");
+
+
+        let currentUser =
+            localStorage.getItem("smokingRoomUser") || "";
+
+
+        function enterSmokingRoom() {
+
+            let name =
+                document.getElementById("username").value.trim();
+
+            if (name === "") {
+                document.getElementById("welcome").textContent =
+                    "Сначала представьтесь.";
+                return;
+            }
+
+            currentUser = name;
+
+            localStorage.setItem(
+                "smokingRoomUser",
+                name
+            );
+
             document.getElementById("welcome").textContent =
-                "Сначала представьтесь.";
-            return;
+                "Добро пожаловать в Курилку, " +
+                name +
+                "!";
+
+            addPersonToList(name);
         }
 
-        currentUser = name;
 
-        localStorage.setItem("smokingRoomUser", name);
+        function addPersonToList(name) {
 
-        document.getElementById("welcome").textContent =
-            "Добро пожаловать в Курилку, " + name + "!";
+            let peopleList =
+                document.getElementById("people-list");
 
-        document.getElementById("username").value = name;
+            let people =
+                peopleList.getElementsByTagName("li");
 
-        addPersonToList(name);
-    }
+            for (let person of people) {
+
+                if (person.textContent === name) {
+                    return;
+                }
+            }
+
+            let newPerson =
+                document.createElement("li");
+
+            newPerson.textContent = name;
+
+            peopleList.appendChild(newPerson);
+        }
 
 
-    function addPersonToList(name) {
+        async function sendMessage() {
 
-        let peopleList = document.getElementById("people-list");
+            let message =
+                document.getElementById("message").value.trim();
 
-        let people = peopleList.getElementsByTagName("li");
-
-        for (let person of people) {
-            if (person.textContent === name) {
+            if (currentUser === "") {
+                alert("Сначала зайдите в Курилку.");
                 return;
+            }
+
+            if (message === "") {
+                alert("Напишите сообщение.");
+                return;
+            }
+
+            await push(
+                messagesRef,
+                {
+                    author: currentUser,
+                    text: message,
+                    time: serverTimestamp()
+                }
+            );
+
+            document.getElementById("message").value = "";
+        }
+
+
+        function showMessage(author, text) {
+
+            let newMessage =
+                document.createElement("div");
+
+            newMessage.className = "message";
+
+
+            let authorLine =
+                document.createElement("p");
+
+            authorLine.className = "author";
+
+            authorLine.textContent =
+                author + ":";
+
+
+            let messageLine =
+                document.createElement("p");
+
+            messageLine.textContent = text;
+
+
+            newMessage.appendChild(authorLine);
+
+            newMessage.appendChild(messageLine);
+
+
+            document
+                .getElementById("chat-messages")
+                .appendChild(newMessage);
+        }
+
+
+        onChildAdded(
+            messagesRef,
+            function(snapshot) {
+
+                let message = snapshot.val();
+
+                if (!message) {
+                    return;
+                }
+
+                showMessage(
+                    message.author,
+                    message.text
+                );
+            }
+        );
+
+
+        function loadSmokingRoom() {
+
+            if (currentUser !== "") {
+
+                document.getElementById("username").value =
+                    currentUser;
+
+                document.getElementById("welcome").textContent =
+                    "С возвращением в Курилку, " +
+                    currentUser +
+                    "!";
+
+                addPersonToList(currentUser);
             }
         }
 
-        let newPerson = document.createElement("li");
-        newPerson.textContent = name;
 
-        peopleList.appendChild(newPerson);
-    }
-
-
-    function sendMessage() {
-
-        let message = document.getElementById("message").value.trim();
-
-        if (currentUser === "") {
-            alert("Сначала зайдите в Курилку.");
-            return;
-        }
-
-        if (message === "") {
-            alert("Напишите сообщение.");
-            return;
-        }
-
-        let messages =
-            JSON.parse(localStorage.getItem("smokingRoomMessages")) || [];
-
-        messages.push({
-            author: currentUser,
-            text: message
-        });
-
-        localStorage.setItem(
-            "smokingRoomMessages",
-            JSON.stringify(messages)
-        );
-
-        showMessage(currentUser, message);
-
-        document.getElementById("message").value = "";
-    }
+        document
+            .getElementById("login-button")
+            .addEventListener(
+                "click",
+                enterSmokingRoom
+            );
 
 
-    function showMessage(author, text) {
-
-        let newMessage = document.createElement("div");
-        newMessage.className = "message";
-
-        let authorLine = document.createElement("p");
-        authorLine.className = "author";
-        authorLine.textContent = author + ":";
-
-        let messageLine = document.createElement("p");
-        messageLine.textContent = text;
-
-        newMessage.appendChild(authorLine);
-        newMessage.appendChild(messageLine);
-
-        document.getElementById("chat-messages")
-            .appendChild(newMessage);
-    }
+        document
+            .getElementById("send-button")
+            .addEventListener(
+                "click",
+                sendMessage
+            );
 
 
-    function loadSmokingRoom() {
+        document
+            .getElementById("message")
+            .addEventListener(
+                "keydown",
+                function(event) {
 
-        if (currentUser !== "") {
-
-            document.getElementById("username").value = currentUser;
-
-            document.getElementById("welcome").textContent =
-                "С возвращением в Курилку, " + currentUser + "!";
-
-            addPersonToList(currentUser);
-        }
-
-        let messages =
-            JSON.parse(localStorage.getItem("smokingRoomMessages")) || [];
-
-        for (let message of messages) {
-            showMessage(message.author, message.text);
-        }
-    }
+                    if (event.key === "Enter") {
+                        sendMessage();
+                    }
+                }
+            );
 
 
-    loadSmokingRoom();
-</script>
+        loadSmokingRoom();
+
+    </script>
+
 </body>
 
 </html>
