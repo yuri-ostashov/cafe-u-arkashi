@@ -78,14 +78,47 @@ max-width: 650px;
         padding: 15px;
     nav 
 }
+            .chat-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px;
+}
 
-    .login-box input,
-    .chat-box input {
+.chat-box input {
+    flex: 1;
+    width: auto;
+    min-width: 0;
+    padding: 12px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    font-size: 16px;
+}
+
+.chat-icon,
+.send-button {
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.send-button {
+    font-size: 22px;
+}
+
+    .login-box input,{
         width: 100%;
         box-sizing: border-box;
         margin-bottom: 10px;
     }
-
+            .chat-box input {
+    margin-bottom: 0;
+            }
     .login-box button,
     .chat-box button {
         width: 100%;
@@ -157,15 +190,17 @@ max-width: 650px;
         </div>
 
         <div class="chat-box">
-            <h3>Сказать что-нибудь</h3>
+            <button class="chat-icon" type="button">🙂</button>
 
-            <input
-                type="text"
-                id="message"
-                placeholder="Напишите сообщение"
-            >
+    <button class="chat-icon" type="button">📎</button>
 
-            <button id="send-button">Отправить</button>
+    <input
+        type="text"
+        id="message"
+        placeholder="Написать сообщение..."
+    >
+
+    <button id="send-button" class="send-button">➤</button>
         </div>
 
         <div id="chat-messages"></div>
