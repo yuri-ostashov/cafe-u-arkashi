@@ -7,129 +7,134 @@
     <title>Курилка — Кафе у Аркаши</title>
 
     <style>
-        body {
-            background-color: #4a4038;
-            color: #f5eadb;
-            font-family: Arial, sans-serif;
-        }
-
-        header {
-            text-align: center;
-            padding: 20px;
-        }
-
-        h1 {
-            color: #f3c98b;
-        }
-
-        nav a {
-            color: #ffd9a0;
-            text-decoration: none;
-        }
-
-        .smoking-room {
-            background-color: #2f2925;
-            width: 90%;
-max-width: 650px;
-            padding: 25px;
-            margin: 30px auto;
-            border: 2px solid #8b6b4a;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px #222;
-        }
-
-        .message {
-            background-color: #3b342f;
-            padding: 15px;
-            margin-top: 20px;
-            border-left: 5px solid #b58a5a;
-            border-radius: 8px;
-        }
-
-        .author {
-            color: #f3c98b;
-            font-weight: bold;
-        }
-
-        .login-box,
-        .people-box,
-        .chat-box {
-            background-color: #3b342f;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 8px;
-        }
-
-        .login-box input,
-        .chat-box input {
-            padding: 10px;
-            width: 60%;
-        }
-
-        .login-box button,
-        .chat-box button {
-            padding: 10px 15px;
-            cursor: pointer;
-        @media (max-width: 600px) {
-
-    .smoking-room {
-        width: auto;
-        margin: 15px 10px;
-        padding: 15px;
-    nav 
-}
-            .chat-box {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px;
-}
-
-.chat-box input {
-    flex: 1;
-    width: auto;
-    min-width: 0;
-    padding: 12px;
-    border: none;
-    border-radius: 20px;
-    outline: none;
-    font-size: 16px;
-}
-
-.chat-icon,
-.send-button {
-    width: 42px;
-    height: 42px;
-    flex-shrink: 0;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 20px;
-}
-
-.send-button {
-    font-size: 22px;
-}
-
-    .login-box input,{
-        width: 100%;
-        box-sizing: border-box;
-        margin-bottom: 10px;
-    }
-            .chat-box input {
-    margin-bottom: 0;
-            }
-    .login-box button,
-    .chat-box button {
-        width: 100%;
+    body {
+        background-color: #4a4038;
+        color: #f5eadb;
+        font-family: Arial, sans-serif;
     }
 
     header {
+        text-align: center;
+        padding: 20px;
+    }
+
+    h1 {
+        color: #f3c98b;
+    }
+
+    nav a {
+        color: #ffd9a0;
+        text-decoration: none;
+    }
+
+    .smoking-room {
+        background-color: #2f2925;
+        width: 90%;
+        max-width: 650px;
+        padding: 25px;
+        margin: 30px auto;
+        border: 2px solid #8b6b4a;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px #222;
+    }
+
+    .message {
+        background-color: #3b342f;
+        padding: 15px;
+        margin-top: 20px;
+        border-left: 5px solid #b58a5a;
+        border-radius: 8px;
+    }
+
+    .author {
+        color: #f3c98b;
+        font-weight: bold;
+    }
+
+    .login-box,
+    .people-box,
+    .chat-box {
+        background-color: #3b342f;
+        padding: 15px;
+        margin: 20px 0;
+        border-radius: 8px;
+    }
+
+    .login-box input {
+        padding: 10px;
+        width: 60%;
+    }
+
+    .login-box button {
+        padding: 10px 15px;
+        cursor: pointer;
+    }
+
+    .chat-box {
+        display: flex;
+        align-items: center;
+        gap: 8px;
         padding: 10px;
     }
-            {
-    line-height: 2;}
-    </style>
+
+    .chat-box input {
+        flex: 1;
+        width: auto;
+        min-width: 0;
+        padding: 12px;
+        border: none;
+        border-radius: 20px;
+        outline: none;
+        font-size: 16px;
+    }
+
+    .chat-icon,
+    .send-button {
+        width: 42px;
+        height: 42px;
+        flex-shrink: 0;
+        padding: 0;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 20px;
+    }
+
+    .send-button {
+        font-size: 22px;
+    }
+
+    @media (max-width: 600px) {
+
+        .smoking-room {
+            width: auto;
+            margin: 15px 10px;
+            padding: 15px;
+        }
+
+        .login-box input {
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+
+        .login-box button {
+            width: 100%;
+        }
+
+        .chat-box input {
+            margin-bottom: 0;
+        }
+
+        header {
+            padding: 10px;
+        }
+
+        nav {
+            line-height: 2;
+        }
+    }
+</style>
 </head>
 
 <body>
