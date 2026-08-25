@@ -34,18 +34,24 @@
             width: 90%;
             max-width: 650px;
             box-sizing: border-box;
+
             padding: 25px;
             margin: 30px auto;
+
             border: 2px solid #8b6b4a;
             border-radius: 15px;
+
             box-shadow: 0 5px 15px #222;
         }
 
         .login-box,
+        .user-bar,
         .people-box {
             background-color: #3b342f;
+
             padding: 15px;
             margin: 20px 0;
+
             border-radius: 8px;
         }
 
@@ -57,6 +63,29 @@
 
         .login-box button {
             padding: 10px 15px;
+            cursor: pointer;
+        }
+
+        .user-bar {
+            display: none;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .user-bar.visible {
+            display: flex;
+        }
+
+        .user-name {
+            font-weight: bold;
+            color: #f3c98b;
+        }
+
+        .change-user-button {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 8px;
             cursor: pointer;
         }
 
@@ -83,8 +112,10 @@
         .message-bubble {
             max-width: 78%;
             padding: 10px 12px;
+
             border-radius: 14px;
             box-sizing: border-box;
+
             word-wrap: break-word;
         }
 
@@ -121,20 +152,28 @@
             display: flex;
             align-items: center;
             gap: 8px;
+
             background-color: #3b342f;
+
             padding: 10px;
             margin: 20px 0 8px 0;
+
             border-radius: 25px;
         }
 
         .chat-box input {
             flex: 1;
+
             width: auto;
             min-width: 0;
+
             padding: 12px 15px;
+
             border: none;
             border-radius: 20px;
+
             outline: none;
+
             font-size: 16px;
         }
 
@@ -142,11 +181,16 @@
         .send-button {
             width: 42px;
             height: 42px;
+
             flex-shrink: 0;
+
             padding: 0;
+
             border: none;
             border-radius: 50%;
+
             cursor: pointer;
+
             font-size: 20px;
         }
 
@@ -156,11 +200,15 @@
 
         .emoji-panel {
             display: none;
+
             flex-wrap: wrap;
             gap: 8px;
+
             background-color: #3b342f;
+
             padding: 12px;
             margin-bottom: 20px;
+
             border-radius: 12px;
         }
 
@@ -171,13 +219,17 @@
         .emoji-button {
             width: 40px;
             height: 40px;
+
             border: none;
             border-radius: 10px;
+
             cursor: pointer;
+
             font-size: 22px;
         }
 
         @media (max-width: 600px) {
+
             header {
                 padding: 10px;
             }
@@ -188,6 +240,7 @@
 
             .smoking-room {
                 width: auto;
+
                 margin: 15px 10px;
                 padding: 15px;
             }
@@ -198,6 +251,15 @@
             }
 
             .login-box button {
+                width: 100%;
+            }
+
+            .user-bar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .change-user-button {
                 width: 100%;
             }
 
@@ -226,15 +288,20 @@
                 font-size: 21px;
             }
         }
+
     </style>
 </head>
+
 
 <body>
 
     <header>
+
         <h1>Курилка</h1>
 
-        <p>Здесь можно присесть, поговорить и поделиться своими историями.</p>
+        <p>
+            Здесь можно присесть, поговорить и поделиться своими историями.
+        </p>
 
         <nav>
             <a href="index.html">Главная</a> |
@@ -242,18 +309,17 @@
             <a href="#">Советы</a> |
             <a href="#">Курилка</a>
         </nav>
+
     </header>
+
 
     <div class="smoking-room">
 
         <h2>Разговоры без галстуков</h2>
 
-        <p>
-            Здесь никто никуда не спешит.
-            Можно обсудить кофе, жизнь, работу и всё, что пришло в голову.
-        </p>
 
-        <div class="login-box">
+        <div id="login-box" class="login-box">
+
             <h3>Зайти в Курилку</h3>
 
             <input
@@ -267,18 +333,33 @@
             </button>
 
             <p id="welcome"></p>
+
         </div>
 
-        <div class="people-box">
-            <h3>Сейчас в Курилке</h3>
 
-            <ul id="people-list">
-                <li>Аркаша</li>
-                <li>Анжела</li>
-            </ul>
+        <div id="user-bar" class="user-bar">
+
+            <div>
+                Вы вошли как
+                <span id="current-user-name" class="user-name"></span>
+            </div>
+
+            <button
+                id="change-user-button"
+                class="change-user-button"
+                type="button"
+            >
+                Сменить имя
+            </button>
+
         </div>
 
-        <div id="chat-messages" class="chat-messages"></div>
+
+        <div
+            id="chat-messages"
+            class="chat-messages"
+        ></div>
+
 
         <div class="chat-box">
 
@@ -316,7 +397,12 @@
 
         </div>
 
-        <div id="emoji-panel" class="emoji-panel">
+
+        <div
+            id="emoji-panel"
+            class="emoji-panel"
+        >
+
             <button class="emoji-button" type="button">😀</button>
             <button class="emoji-button" type="button">😄</button>
             <button class="emoji-button" type="button">😂</button>
@@ -324,23 +410,41 @@
             <button class="emoji-button" type="button">😎</button>
             <button class="emoji-button" type="button">🤔</button>
             <button class="emoji-button" type="button">😡</button>
+
             <button class="emoji-button" type="button">👍</button>
             <button class="emoji-button" type="button">👎</button>
             <button class="emoji-button" type="button">🤝</button>
+
             <button class="emoji-button" type="button">❤️</button>
             <button class="emoji-button" type="button">🔥</button>
+
             <button class="emoji-button" type="button">☕</button>
             <button class="emoji-button" type="button">🍾</button>
             <button class="emoji-button" type="button">🥂</button>
             <button class="emoji-button" type="button">🚬</button>
+
+        </div>
+
+
+        <div class="people-box">
+
+            <h3>Сейчас в Курилке</h3>
+
+            <ul id="people-list">
+                <li>Аркаша</li>
+                <li>Анжела</li>
+            </ul>
+
         </div>
 
     </div>
+
 
     <script type="module">
 
         import { initializeApp }
         from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+
 
         import {
             getDatabase,
@@ -353,27 +457,89 @@
 
 
         const firebaseConfig = {
-            apiKey: "AIzaSyB60yxDm_FgW7JmeYAAr1covhkFaGk8-k8",
-            authDomain: "cafe-u-arkashi.firebaseapp.com",
-            databaseURL: "https://cafe-u-arkashi-default-rtdb.europe-west1.firebasedatabase.app",
-            projectId: "cafe-u-arkashi",
-            storageBucket: "cafe-u-arkashi.firebasestorage.app",
-            messagingSenderId: "589764953441",
-            appId: "1:589764953441:web:08ef627e7ef399e13b3120"
+
+            apiKey:
+                "AIzaSyB60yxDm_FgW7JmeYAAr1covhkFaGk8-k8",
+
+            authDomain:
+                "cafe-u-arkashi.firebaseapp.com",
+
+            databaseURL:
+                "https://cafe-u-arkashi-default-rtdb.europe-west1.firebasedatabase.app",
+
+            projectId:
+                "cafe-u-arkashi",
+
+            storageBucket:
+                "cafe-u-arkashi.firebasestorage.app",
+
+            messagingSenderId:
+                "589764953441",
+
+            appId:
+                "1:589764953441:web:08ef627e7ef399e13b3120"
         };
 
 
         const app =
             initializeApp(firebaseConfig);
 
+
         const database =
             getDatabase(app);
+
 
         const messagesRef =
             ref(database, "messages");
 
+
         let currentUser =
             localStorage.getItem("smokingRoomUser") || "";
+
+
+        function updateUserInterface() {
+
+            const loginBox =
+                document.getElementById("login-box");
+
+
+            const userBar =
+                document.getElementById("user-bar");
+
+
+            const currentUserName =
+                document.getElementById("current-user-name");
+
+
+            if (currentUser !== "") {
+
+                loginBox.style.display =
+                    "none";
+
+
+                userBar.classList.add(
+                    "visible"
+                );
+
+
+                currentUserName.textContent =
+                    currentUser;
+
+            } else {
+
+                loginBox.style.display =
+                    "block";
+
+
+                userBar.classList.remove(
+                    "visible"
+                );
+
+
+                currentUserName.textContent =
+                    "";
+            }
+        }
 
 
         function enterSmokingRoom() {
@@ -384,7 +550,9 @@
                     .value
                     .trim();
 
+
             if (name === "") {
+
                 document
                     .getElementById("welcome")
                     .textContent =
@@ -393,21 +561,55 @@
                 return;
             }
 
-            currentUser = name;
+
+            currentUser =
+                name;
+
 
             localStorage.setItem(
                 "smokingRoomUser",
                 name
             );
 
+
+            addPersonToList(
+                name
+            );
+
+
+            updateUserInterface();
+        }
+
+
+        function changeUser() {
+
+            localStorage.removeItem(
+                "smokingRoomUser"
+            );
+
+
+            currentUser =
+                "";
+
+
+            document
+                .getElementById("username")
+                .value =
+                "";
+
+
             document
                 .getElementById("welcome")
                 .textContent =
-                "Добро пожаловать в Курилку, "
-                + name
-                + "!";
+                "";
 
-            addPersonToList(name);
+
+            updateUserInterface();
+
+
+            document
+                .getElementById("username")
+                .focus();
         }
 
 
@@ -416,21 +618,30 @@
             const peopleList =
                 document.getElementById("people-list");
 
+
             const people =
                 peopleList.getElementsByTagName("li");
 
+
             for (const person of people) {
+
                 if (person.textContent === name) {
                     return;
                 }
             }
 
+
             const newPerson =
                 document.createElement("li");
 
-            newPerson.textContent = name;
 
-            peopleList.appendChild(newPerson);
+            newPerson.textContent =
+                name;
+
+
+            peopleList.appendChild(
+                newPerson
+            );
         }
 
 
@@ -442,17 +653,29 @@
                     .value
                     .trim();
 
+
             if (currentUser === "") {
-                alert("Сначала зайдите в Курилку.");
+
+                alert(
+                    "Сначала зайдите в Курилку."
+                );
+
                 return;
             }
+
 
             if (message === "") {
-                alert("Напишите сообщение.");
+
+                alert(
+                    "Напишите сообщение."
+                );
+
                 return;
             }
 
+
             try {
+
                 await push(
                     messagesRef,
                     {
@@ -462,13 +685,20 @@
                     }
                 );
 
+
                 document
                     .getElementById("message")
-                    .value = "";
+                    .value =
+                    "";
 
             } catch (error) {
+
                 console.error(error);
-                alert("Не удалось отправить сообщение.");
+
+
+                alert(
+                    "Не удалось отправить сообщение."
+                );
             }
         }
 
@@ -479,8 +709,10 @@
                 return "";
             }
 
+
             const date =
                 new Date(timestamp);
+
 
             return date.toLocaleTimeString(
                 "ru-RU",
@@ -492,21 +724,32 @@
         }
 
 
-        function showMessage(author, text, time) {
+        function showMessage(
+            author,
+            text,
+            time
+        ) {
 
             const row =
                 document.createElement("div");
 
+
             const isOwn =
                 author === currentUser;
 
+
             row.className =
                 "message-row "
-                + (isOwn ? "own" : "other");
+                + (
+                    isOwn
+                        ? "own"
+                        : "other"
+                );
 
 
             const bubble =
                 document.createElement("div");
+
 
             bubble.className =
                 "message-bubble";
@@ -515,8 +758,10 @@
             const authorLine =
                 document.createElement("div");
 
+
             authorLine.className =
                 "message-author";
+
 
             authorLine.textContent =
                 author;
@@ -525,8 +770,10 @@
             const messageLine =
                 document.createElement("div");
 
+
             messageLine.className =
                 "message-text";
+
 
             messageLine.textContent =
                 text;
@@ -535,8 +782,10 @@
             const timeLine =
                 document.createElement("div");
 
+
             timeLine.className =
                 "message-time";
+
 
             timeLine.textContent =
                 formatTime(time);
@@ -546,17 +795,21 @@
                 authorLine
             );
 
+
             bubble.appendChild(
                 messageLine
             );
+
 
             bubble.appendChild(
                 timeLine
             );
 
+
             row.appendChild(
                 bubble
             );
+
 
             document
                 .getElementById("chat-messages")
@@ -578,11 +831,14 @@
             const messageInput =
                 document.getElementById("message");
 
+
             const start =
                 messageInput.selectionStart;
 
+
             const end =
                 messageInput.selectionEnd;
+
 
             const before =
                 messageInput.value.substring(
@@ -590,21 +846,26 @@
                     start
                 );
 
+
             const after =
                 messageInput.value.substring(
                     end
                 );
+
 
             messageInput.value =
                 before
                 + emoji
                 + after;
 
+
             const newPosition =
                 start
                 + emoji.length;
 
+
             messageInput.focus();
+
 
             messageInput.setSelectionRange(
                 newPosition,
@@ -621,9 +882,11 @@
                 const message =
                     snapshot.val();
 
+
                 if (!message) {
                     return;
                 }
+
 
                 showMessage(
                     message.author,
@@ -643,23 +906,22 @@
                     .value =
                     currentUser;
 
-                document
-                    .getElementById("welcome")
-                    .textContent =
-                    "С возвращением в Курилку, "
-                    + currentUser
-                    + "!";
 
                 addPersonToList(
                     currentUser
                 );
             }
 
+
+            updateUserInterface();
+
+
             showMessage(
                 "Аркаша",
                 "Ну что, кто первый зашёл в Курилку?",
                 null
             );
+
 
             showMessage(
                 "Анжела",
@@ -674,6 +936,14 @@
             .addEventListener(
                 "click",
                 enterSmokingRoom
+            );
+
+
+        document
+            .getElementById("change-user-button")
+            .addEventListener(
+                "click",
+                changeUser
             );
 
 
@@ -702,6 +972,7 @@
                         "click",
 
                         function() {
+
                             insertEmoji(
                                 button.textContent
                             );
