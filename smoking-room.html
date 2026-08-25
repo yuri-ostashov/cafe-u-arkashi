@@ -2,10 +2,34 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Курилка — Кафе у Аркаши</title>
 <style>
-body{margin:0;background:#4a4038;color:#f5eadb;font-family:Arial,sans-serif}header{text-align:center;padding:20px}h1{color:#f3c98b}nav a{color:#ffd9a0;text-decoration:none}.smoking-room{background:#2f2925;width:90%;max-width:650px;box-sizing:border-box;padding:25px;margin:30px auto;border:2px solid #8b6b4a;border-radius:15px;box-shadow:0 5px 15px #222}.login-box,.user-bar,.people-box{background:#3b342f;padding:15px;margin:20px 0;border-radius:8px}.login-box input{width:60%;box-sizing:border-box;padding:10px}.login-box button{padding:10px 15px;cursor:pointer}.user-bar{display:none;align-items:center;justify-content:space-between;gap:10px}.user-bar.visible{display:flex}.user-name{font-weight:bold;color:#f3c98b}.change-user-button{padding:8px 12px;border:0;border-radius:8px;cursor:pointer}.chat-messages{display:flex;flex-direction:column;gap:10px;margin-top:20px}.message-row{display:flex;width:100%}.message-row.own{justify-content:flex-end}.message-row.other{justify-content:flex-start}.message-bubble{position:relative;max-width:78%;padding:10px 12px;border-radius:14px;box-sizing:border-box;word-wrap:break-word}.message-row.other .message-bubble{background:#3b342f;border-bottom-left-radius:4px}.message-row.own .message-bubble{background:#6f5338;border-bottom-right-radius:4px;padding-right:42px}.message-author{color:#f3c98b;font-size:13px;font-weight:bold;margin-bottom:4px}.message-text{font-size:16px;line-height:1.35;white-space:pre-wrap}.message-time{margin-top:5px;font-size:11px;opacity:.7;text-align:right}.edited-mark{margin-left:5px;font-size:10px;opacity:.75}.deleted-message{font-style:italic;opacity:.65}.message-menu-button{position:absolute;top:6px;right:7px;width:28px;height:28px;padding:0;border:0;border-radius:50%;background:transparent;color:#f5eadb;cursor:pointer;font-size:20px;line-height:28px}.message-menu{display:none;position:absolute;top:34px;right:7px;z-index:20;min-width:130px;overflow:hidden;background:#efe3d2;border-radius:8px;box-shadow:0 4px 14px rgba(0,0,0,.35)}.message-menu.open{display:block}.message-menu button{display:block;width:100%;padding:9px 12px;border:0;background:transparent;text-align:left;cursor:pointer;color:#2f2925}.message-menu button:hover{background:#dbcbb7}.edit-area{width:100%;min-height:70px;box-sizing:border-box;resize:vertical;padding:8px;border:0;border-radius:8px;font-family:Arial,sans-serif;font-size:15px}.edit-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:8px}.edit-actions button{padding:7px 10px;border:0;border-radius:7px;cursor:pointer}.chat-box{display:flex;align-items:center;gap:8px;background:#3b342f;padding:10px;margin:20px 0 8px;border-radius:25px}.chat-box input{flex:1;width:auto;min-width:0;padding:12px 15px;border:0;border-radius:20px;outline:none;font-size:16px}.chat-icon,.send-button{width:42px;height:42px;flex-shrink:0;padding:0;border:0;border-radius:50%;cursor:pointer;font-size:20px}.send-button{font-size:22px}.emoji-panel{display:none;flex-wrap:wrap;gap:8px;background:#3b342f;padding:12px;margin-bottom:20px;border-radius:12px}.emoji-panel.open{display:flex}.emoji-button{width:40px;height:40px;border:0;border-radius:10px;cursor:pointer;font-size:22px}@media(max-width:600px){header{padding:10px}nav{line-height:2}.smoking-room{width:auto;margin:15px 10px;padding:15px}.login-box input{width:100%;margin-bottom:10px}.login-box button{width:100%}.user-bar{flex-direction:column;align-items:stretch}.change-user-button{width:100%}.message-bubble{max-width:86%}.chat-box{gap:6px;padding:8px}.chat-icon,.send-button{width:40px;height:40px}.emoji-panel{gap:6px}.emoji-button{width:38px;height:38px;font-size:21px}}
+body{margin:0;background:#4a4038;color:#f5eadb;font-family:Arial,sans-serif}
+header{text-align:center;padding:20px}h1{color:#f3c98b}nav a{color:#ffd9a0;text-decoration:none}
+.smoking-room{background:#2f2925;width:90%;max-width:650px;box-sizing:border-box;padding:25px;margin:30px auto;border:2px solid #8b6b4a;border-radius:15px;box-shadow:0 5px 15px #222}
+.login-box,.user-bar,.people-box{background:#3b342f;padding:15px;margin:20px 0;border-radius:8px}
+.login-box input{width:60%;box-sizing:border-box;padding:10px}.login-box button{padding:10px 15px;cursor:pointer}
+.user-bar{display:none;align-items:center;justify-content:space-between;gap:10px}.user-bar.visible{display:flex}
+.user-name{font-weight:bold;color:#f3c98b}.change-user-button{padding:8px 12px;border:0;border-radius:8px;cursor:pointer}
+.chat-messages{display:flex;flex-direction:column;gap:10px;margin-top:20px}.message-row{display:flex;width:100%}
+.message-row.own{justify-content:flex-end}.message-row.other{justify-content:flex-start}
+.message-bubble{position:relative;max-width:78%;padding:10px 12px;border-radius:14px;box-sizing:border-box;word-wrap:break-word}
+.message-row.other .message-bubble{background:#3b342f;border-bottom-left-radius:4px}
+.message-row.own .message-bubble{background:#6f5338;border-bottom-right-radius:4px;padding-right:42px}
+.message-author{color:#f3c98b;font-size:13px;font-weight:bold;margin-bottom:4px}.message-text{font-size:16px;line-height:1.35;white-space:pre-wrap}
+.message-time{margin-top:5px;font-size:11px;opacity:.7;text-align:right}.edited-mark{margin-left:5px;font-size:10px;opacity:.75}.deleted-message{font-style:italic;opacity:.65}
+.message-menu-button{position:absolute;top:6px;right:7px;width:28px;height:28px;padding:0;border:0;border-radius:50%;background:transparent;color:#f5eadb;cursor:pointer;font-size:20px;line-height:28px}
+.message-menu{display:none;position:absolute;top:34px;right:7px;z-index:20;min-width:130px;overflow:hidden;background:#efe3d2;border-radius:8px;box-shadow:0 4px 14px rgba(0,0,0,.35)}
+.message-menu.open{display:block}.message-menu button{display:block;width:100%;padding:9px 12px;border:0;background:transparent;text-align:left;cursor:pointer;color:#2f2925}
+.edit-area{width:100%;min-height:70px;box-sizing:border-box;resize:vertical;padding:8px;border:0;border-radius:8px;font:15px Arial,sans-serif}
+.edit-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:8px}.edit-actions button{padding:7px 10px;border:0;border-radius:7px;cursor:pointer}
+.chat-box{display:flex;align-items:center;gap:8px;background:#3b342f;padding:10px;margin:20px 0 8px;border-radius:25px}
+.chat-box input{flex:1;width:auto;min-width:0;padding:12px 15px;border:0;border-radius:20px;outline:none;font-size:16px}
+.chat-icon,.send-button{width:42px;height:42px;flex-shrink:0;padding:0;border:0;border-radius:50%;cursor:pointer;font-size:20px}.send-button{font-size:22px}
+.emoji-panel{display:none;flex-wrap:wrap;gap:8px;background:#3b342f;padding:12px;margin-bottom:20px;border-radius:12px}.emoji-panel.open{display:flex}
+.emoji-button{width:40px;height:40px;border:0;border-radius:10px;cursor:pointer;font-size:22px}
+@media(max-width:600px){header{padding:10px}nav{line-height:2}.smoking-room{width:auto;margin:15px 10px;padding:15px}.login-box input{width:100%;margin-bottom:10px}.login-box button{width:100%}.user-bar{flex-direction:column;align-items:stretch}.change-user-button{width:100%}.message-bubble{max-width:86%}.chat-box{gap:6px;padding:8px}.chat-icon,.send-button{width:40px;height:40px}.emoji-panel{gap:6px}.emoji-button{width:38px;height:38px;font-size:21px}}
 </style>
 </head>
 <body>
@@ -16,31 +40,158 @@ body{margin:0;background:#4a4038;color:#f5eadb;font-family:Arial,sans-serif}head
 <div id="user-bar" class="user-bar"><div>Вы вошли как <span id="current-user-name" class="user-name"></span></div><button id="change-user-button" class="change-user-button" type="button">Сменить имя</button></div>
 <div id="chat-messages" class="chat-messages"></div>
 <div class="chat-box"><button id="emoji-toggle" class="chat-icon" type="button" title="Эмодзи">🙂</button><button class="chat-icon" type="button" title="Прикрепить файл">📎</button><input type="text" id="message" placeholder="Написать сообщение..."><button id="send-button" class="send-button" type="button" title="Отправить">➤</button></div>
-<div id="emoji-panel" class="emoji-panel"><button class="emoji-button" type="button">😀</button><button class="emoji-button" type="button">😄</button><button class="emoji-button" type="button">😂</button><button class="emoji-button" type="button">😉</button><button class="emoji-button" type="button">😎</button><button class="emoji-button" type="button">🤔</button><button class="emoji-button" type="button">😡</button><button class="emoji-button" type="button">👍</button><button class="emoji-button" type="button">👎</button><button class="emoji-button" type="button">🤝</button><button class="emoji-button" type="button">❤️</button><button class="emoji-button" type="button">🔥</button><button class="emoji-button" type="button">☕</button><button class="emoji-button" type="button">🍾</button><button class="emoji-button" type="button">🥂</button><button class="emoji-button" type="button">🚬</button></div>
+<div id="emoji-panel" class="emoji-panel">😀 😄 😂 😉 😎 🤔 😡 👍 👎 🤝 ❤️ 🔥 ☕ 🍾 🥂 🚬</div>
 <div class="people-box"><h3>Сейчас в Курилке</h3><ul id="people-list"><li>Аркаша</li><li>Анжела</li></ul></div>
 </div>
+
 <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
-import { getDatabase, ref, push, onValue, update, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-database.js";
-const firebaseConfig={apiKey:"AIzaSyB60yxDm_FgW7JmeYAAr1covhkFaGk8-k8",authDomain:"cafe-u-arkashi.firebaseapp.com",databaseURL:"https://cafe-u-arkashi-default-rtdb.europe-west1.firebasedatabase.app",projectId:"cafe-u-arkashi",storageBucket:"cafe-u-arkashi.firebasestorage.app",messagingSenderId:"589764953441",appId:"1:589764953441:web:08ef627e7ef399e13b3120"};
-const app=initializeApp(firebaseConfig);const database=getDatabase(app);const messagesRef=ref(database,"messages");let currentUser=localStorage.getItem("smokingRoomUser")||"";let lastMessages=[];
-function updateUserInterface(){const loginBox=document.getElementById("login-box"),userBar=document.getElementById("user-bar"),currentUserName=document.getElementById("current-user-name");if(currentUser!==""){loginBox.style.display="none";userBar.classList.add("visible");currentUserName.textContent=currentUser}else{loginBox.style.display="block";userBar.classList.remove("visible");currentUserName.textContent=""}}
-function enterSmokingRoom(){const name=document.getElementById("username").value.trim();if(name===""){document.getElementById("welcome").textContent="Сначала представьтесь.";return}currentUser=name;localStorage.setItem("smokingRoomUser",name);addPersonToList(name);updateUserInterface();renderMessages(lastMessages)}
-function changeUser(){localStorage.removeItem("smokingRoomUser");currentUser="";document.getElementById("username").value="";document.getElementById("welcome").textContent="";updateUserInterface();renderMessages(lastMessages);document.getElementById("username").focus()}
-function addPersonToList(name){const peopleList=document.getElementById("people-list"),people=peopleList.getElementsByTagName("li");for(const person of people){if(person.textContent===name)return}const newPerson=document.createElement("li");newPerson.textContent=name;peopleList.appendChild(newPerson)}
-async function sendMessage(){const message=document.getElementById("message").value.trim();if(currentUser===""){alert("Сначала зайдите в Курилку.");return}if(message===""){alert("Напишите сообщение.");return}try{await push(messagesRef,{author:currentUser,text:message,time:serverTimestamp(),edited:false,deleted:false});document.getElementById("message").value=""}catch(error){console.error(error);alert("Не удалось отправить сообщение.")}}
-function formatTime(timestamp){if(!timestamp)return"";const date=new Date(timestamp);return date.toLocaleTimeString("ru-RU",{hour:"2-digit",minute:"2-digit"})}
-function renderMessages(messages){lastMessages=messages;const chat=document.getElementById("chat-messages");chat.innerHTML="";showLocalMessage("Аркаша","Ну что, кто первый зашёл в Курилку?");showLocalMessage("Анжела","Я только на минутку. У меня кофе убежит.");for(const message of messages)showMessage(message)}
-function showLocalMessage(author,text){const row=document.createElement("div");row.className="message-row other";const bubble=document.createElement("div");bubble.className="message-bubble";const authorLine=document.createElement("div");authorLine.className="message-author";authorLine.textContent=author;const messageLine=document.createElement("div");messageLine.className="message-text";messageLine.textContent=text;bubble.append(authorLine,messageLine);row.appendChild(bubble);document.getElementById("chat-messages").appendChild(row)}
-function showMessage(message){const row=document.createElement("div"),isOwn=message.author===currentUser;row.className="message-row "+(isOwn?"own":"other");const bubble=document.createElement("div");bubble.className="message-bubble";const authorLine=document.createElement("div");authorLine.className="message-author";authorLine.textContent=message.author||"Гость";const messageLine=document.createElement("div");messageLine.className="message-text";if(message.deleted){messageLine.textContent="Сообщение удалено";messageLine.classList.add("deleted-message")}else{messageLine.textContent=message.text||""}const timeLine=document.createElement("div");timeLine.className="message-time";timeLine.textContent=formatTime(message.time);if(message.edited&&!message.deleted){const mark=document.createElement("span");mark.className="edited-mark";mark.textContent=" изменено";timeLine.appendChild(mark)}bubble.append(authorLine,messageLine,timeLine);if(isOwn&&!message.deleted)addOwnMessageMenu(bubble,message);row.appendChild(bubble);document.getElementById("chat-messages").appendChild(row)}
-function addOwnMessageMenu(bubble,message){const menuButton=document.createElement("button");menuButton.className="message-menu-button";menuButton.type="button";menuButton.textContent="⋮";const menu=document.createElement("div");menu.className="message-menu";const editButton=document.createElement("button");editButton.type="button";editButton.textContent="Редактировать";const deleteButton=document.createElement("button");deleteButton.type="button";deleteButton.textContent="Удалить";menu.append(editButton,deleteButton);menuButton.addEventListener("click",e=>{e.stopPropagation();document.querySelectorAll(".message-menu.open").forEach(m=>{if(m!==menu)m.classList.remove("open")});menu.classList.toggle("open")});editButton.addEventListener("click",()=>{menu.classList.remove("open");startEditingMessage(bubble,message)});deleteButton.addEventListener("click",async()=>{menu.classList.remove("open");await softDeleteMessage(message)});bubble.append(menuButton,menu)}
-function startEditingMessage(bubble,message){const messageLine=bubble.querySelector(".message-text"),oldText=message.text||"";messageLine.innerHTML="";const textarea=document.createElement("textarea");textarea.className="edit-area";textarea.value=oldText;const actions=document.createElement("div");actions.className="edit-actions";const saveButton=document.createElement("button");saveButton.type="button";saveButton.textContent="Сохранить";const cancelButton=document.createElement("button");cancelButton.type="button";cancelButton.textContent="Отмена";actions.append(saveButton,cancelButton);messageLine.append(textarea,actions);textarea.focus();textarea.setSelectionRange(textarea.value.length,textarea.value.length);saveButton.addEventListener("click",async()=>{const newText=textarea.value.trim();if(newText===""){alert("Сообщение не может быть пустым.");return}try{await update(ref(database,"messages/"+message.id),{text:newText,edited:true,editedAt:serverTimestamp()})}catch(error){console.error(error);alert("Не удалось изменить сообщение.")}});cancelButton.addEventListener("click",()=>renderMessages(lastMessages))}
-async function softDeleteMessage(message){if(!confirm("Удалить это сообщение?"))return;try{await update(ref(database,"messages/"+message.id),{text:"",deleted:true,deletedAt:serverTimestamp()})}catch(error){console.error(error);alert("Не удалось удалить сообщение.")}}
+import {initializeApp} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+import {getDatabase,ref,push,onValue,update,serverTimestamp} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-database.js";
+
+const firebaseConfig={
+apiKey:"AIzaSyB60yxDm_FgW7JmeYAAr1covhkFaGk8-k8",
+authDomain:"cafe-u-arkashi.firebaseapp.com",
+databaseURL:"https://cafe-u-arkashi-default-rtdb.europe-west1.firebasedatabase.app",
+projectId:"cafe-u-arkashi",
+storageBucket:"cafe-u-arkashi.firebasestorage.app",
+messagingSenderId:"589764953441",
+appId:"1:589764953441:web:08ef627e7ef399e13b3120"
+};
+
+const app=initializeApp(firebaseConfig),database=getDatabase(app),messagesRef=ref(database,"messages");
+let currentUser=localStorage.getItem("smokingRoomUser")||"";
+let currentUserId=localStorage.getItem("smokingRoomUserId")||"";
+let lastMessages=[];
+
+function createUserId(){
+ if(window.crypto&&crypto.randomUUID)return "user_"+crypto.randomUUID();
+ return "user_"+Date.now().toString(36)+"_"+Math.random().toString(36).slice(2,12);
+}
+function ensureUserId(){
+ if(!currentUserId){currentUserId=createUserId();localStorage.setItem("smokingRoomUserId",currentUserId)}
+ return currentUserId;
+}
+function updateUserInterface(){
+ const loginBox=document.getElementById("login-box"),userBar=document.getElementById("user-bar"),currentUserName=document.getElementById("current-user-name");
+ if(currentUser){loginBox.style.display="none";userBar.classList.add("visible");currentUserName.textContent=currentUser}
+ else{loginBox.style.display="block";userBar.classList.remove("visible");currentUserName.textContent=""}
+}
+function enterSmokingRoom(){
+ const name=document.getElementById("username").value.trim();
+ if(!name){document.getElementById("welcome").textContent="Сначала представьтесь.";return}
+ currentUser=name;ensureUserId();localStorage.setItem("smokingRoomUser",name);addPersonToList(name);updateUserInterface();renderMessages(lastMessages);
+}
+function changeUser(){
+ localStorage.removeItem("smokingRoomUser");currentUser="";
+ document.getElementById("username").value="";document.getElementById("welcome").textContent="";
+ updateUserInterface();renderMessages(lastMessages);document.getElementById("username").focus();
+}
+function addPersonToList(name){
+ const list=document.getElementById("people-list");
+ for(const person of list.getElementsByTagName("li"))if(person.textContent===name)return;
+ const li=document.createElement("li");li.textContent=name;list.appendChild(li);
+}
+async function sendMessage(){
+ const text=document.getElementById("message").value.trim();
+ if(!currentUser){alert("Сначала зайдите в Курилку.");return}
+ if(!text){alert("Напишите сообщение.");return}
+ try{
+  await push(messagesRef,{author:currentUser,userId:ensureUserId(),text,time:serverTimestamp(),edited:false,deleted:false});
+  document.getElementById("message").value="";
+ }catch(error){console.error(error);alert("Не удалось отправить сообщение.")}
+}
+function formatTime(ts){
+ if(!ts)return "";
+ return new Date(ts).toLocaleTimeString("ru-RU",{hour:"2-digit",minute:"2-digit"});
+}
+function renderMessages(messages){
+ lastMessages=messages;const chat=document.getElementById("chat-messages");chat.innerHTML="";
+ showLocalMessage("Аркаша","Ну что, кто первый зашёл в Курилку?");
+ showLocalMessage("Анжела","Я только на минутку. У меня кофе убежит.");
+ for(const m of messages)showMessage(m);
+}
+function showLocalMessage(author,text){
+ const row=document.createElement("div");row.className="message-row other";
+ const bubble=document.createElement("div");bubble.className="message-bubble";
+ const a=document.createElement("div");a.className="message-author";a.textContent=author;
+ const t=document.createElement("div");t.className="message-text";t.textContent=text;
+ bubble.append(a,t);row.appendChild(bubble);document.getElementById("chat-messages").appendChild(row);
+}
+function showMessage(m){
+ const row=document.createElement("div");
+ const legacy=!m.userId;
+ const own=m.userId?m.userId===currentUserId:m.author===currentUser;
+ row.className="message-row "+(own?"own":"other");
+ const bubble=document.createElement("div");bubble.className="message-bubble";
+ const a=document.createElement("div");a.className="message-author";a.textContent=m.author||"Гость";
+ const t=document.createElement("div");t.className="message-text";
+ if(m.deleted){t.textContent="Сообщение удалено";t.classList.add("deleted-message")}else t.textContent=m.text||"";
+ const tm=document.createElement("div");tm.className="message-time";tm.textContent=formatTime(m.time);
+ if(m.edited&&!m.deleted){const mark=document.createElement("span");mark.className="edited-mark";mark.textContent=" изменено";tm.appendChild(mark)}
+ bubble.append(a,t,tm);
+ if(own&&!legacy&&!m.deleted)addOwnMessageMenu(bubble,m);
+ row.appendChild(bubble);document.getElementById("chat-messages").appendChild(row);
+}
+function addOwnMessageMenu(bubble,m){
+ const btn=document.createElement("button");btn.className="message-menu-button";btn.type="button";btn.textContent="⋮";
+ const menu=document.createElement("div");menu.className="message-menu";
+ const edit=document.createElement("button");edit.type="button";edit.textContent="Редактировать";
+ const del=document.createElement("button");del.type="button";del.textContent="Удалить";menu.append(edit,del);
+ btn.addEventListener("click",e=>{e.stopPropagation();document.querySelectorAll(".message-menu.open").forEach(x=>{if(x!==menu)x.classList.remove("open")});menu.classList.toggle("open")});
+ edit.addEventListener("click",()=>{menu.classList.remove("open");startEditingMessage(bubble,m)});
+ del.addEventListener("click",async()=>{menu.classList.remove("open");await softDeleteMessage(m)});
+ bubble.append(btn,menu);
+}
+function startEditingMessage(bubble,m){
+ const line=bubble.querySelector(".message-text"),old=m.text||"";line.innerHTML="";
+ const ta=document.createElement("textarea");ta.className="edit-area";ta.value=old;
+ const actions=document.createElement("div");actions.className="edit-actions";
+ const save=document.createElement("button");save.type="button";save.textContent="Сохранить";
+ const cancel=document.createElement("button");cancel.type="button";cancel.textContent="Отмена";
+ actions.append(save,cancel);line.append(ta,actions);ta.focus();ta.setSelectionRange(ta.value.length,ta.value.length);
+ save.addEventListener("click",async()=>{const text=ta.value.trim();if(!text){alert("Сообщение не может быть пустым.");return}
+  try{await update(ref(database,"messages/"+m.id),{text,edited:true,editedAt:serverTimestamp()})}
+  catch(error){console.error(error);alert("Не удалось изменить сообщение.")}
+ });
+ cancel.addEventListener("click",()=>renderMessages(lastMessages));
+}
+async function softDeleteMessage(m){
+ if(!confirm("Удалить это сообщение?"))return;
+ try{await update(ref(database,"messages/"+m.id),{text:"",deleted:true,deletedAt:serverTimestamp()})}
+ catch(error){console.error(error);alert("Не удалось удалить сообщение.")}
+}
 function toggleEmojiPanel(){document.getElementById("emoji-panel").classList.toggle("open")}
-function insertEmoji(emoji){const input=document.getElementById("message"),start=input.selectionStart,end=input.selectionEnd,before=input.value.substring(0,start),after=input.value.substring(end);input.value=before+emoji+after;const pos=start+emoji.length;input.focus();input.setSelectionRange(pos,pos)}
-onValue(messagesRef,snapshot=>{const data=snapshot.val()||{};const messages=Object.entries(data).map(([id,value])=>({id,...value})).sort((a,b)=>(a.time||0)-(b.time||0));renderMessages(messages)});
-function loadSmokingRoom(){if(currentUser!==""){document.getElementById("username").value=currentUser;addPersonToList(currentUser)}updateUserInterface()}
-document.getElementById("login-button").addEventListener("click",enterSmokingRoom);document.getElementById("change-user-button").addEventListener("click",changeUser);document.getElementById("send-button").addEventListener("click",sendMessage);document.getElementById("emoji-toggle").addEventListener("click",toggleEmojiPanel);document.querySelectorAll(".emoji-button").forEach(button=>button.addEventListener("click",()=>insertEmoji(button.textContent)));document.getElementById("message").addEventListener("keydown",event=>{if(event.key==="Enter")sendMessage()});document.addEventListener("click",()=>document.querySelectorAll(".message-menu.open").forEach(menu=>menu.classList.remove("open")));loadSmokingRoom();
+function insertEmoji(emoji){
+ const input=document.getElementById("message"),start=input.selectionStart,end=input.selectionEnd;
+ input.value=input.value.substring(0,start)+emoji+input.value.substring(end);
+ const pos=start+emoji.length;input.focus();input.setSelectionRange(pos,pos);
+}
+
+const panel=document.getElementById("emoji-panel");
+panel.innerHTML="";
+["😀","😄","😂","😉","😎","🤔","😡","👍","👎","🤝","❤️","🔥","☕","🍾","🥂","🚬"].forEach(emoji=>{
+ const b=document.createElement("button");b.className="emoji-button";b.type="button";b.textContent=emoji;
+ b.addEventListener("click",()=>insertEmoji(emoji));panel.appendChild(b);
+});
+
+onValue(messagesRef,snapshot=>{
+ const data=snapshot.val()||{};
+ const messages=Object.entries(data).map(([id,value])=>({id,...value})).sort((a,b)=>(a.time||0)-(b.time||0));
+ renderMessages(messages);
+});
+
+function loadSmokingRoom(){
+ if(currentUser){ensureUserId();document.getElementById("username").value=currentUser;addPersonToList(currentUser)}
+ updateUserInterface();
+}
+
+document.getElementById("login-button").addEventListener("click",enterSmokingRoom);
+document.getElementById("change-user-button").addEventListener("click",changeUser);
+document.getElementById("send-button").addEventListener("click",sendMessage);
+document.getElementById("emoji-toggle").addEventListener("click",toggleEmojiPanel);
+document.getElementById("message").addEventListener("keydown",e=>{if(e.key==="Enter")sendMessage()});
+document.addEventListener("click",()=>document.querySelectorAll(".message-menu.open").forEach(m=>m.classList.remove("open")));
+loadSmokingRoom();
 </script>
 </body>
 </html>
