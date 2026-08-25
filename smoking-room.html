@@ -4,145 +4,193 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Курилка — Кафе у Аркаши</title>
 
     <style>
-    body {
-        background-color: #4a4038;
-        color: #f5eadb;
-        font-family: Arial, sans-serif;
-    }
 
-    header {
-        text-align: center;
-        padding: 20px;
-    }
-
-    h1 {
-        color: #f3c98b;
-    }
-
-    nav a {
-        color: #ffd9a0;
-        text-decoration: none;
-    }
-
-    .smoking-room {
-        background-color: #2f2925;
-        width: 90%;
-        max-width: 650px;
-        padding: 25px;
-        margin: 30px auto;
-        border: 2px solid #8b6b4a;
-        border-radius: 15px;
-        box-shadow: 0 5px 15px #222;
-    }
-
-    .message {
-        background-color: #3b342f;
-        padding: 15px;
-        margin-top: 20px;
-        border-left: 5px solid #b58a5a;
-        border-radius: 8px;
-    }
-
-    .author {
-        color: #f3c98b;
-        font-weight: bold;
-    }
-
-    .login-box,
-    .people-box,
-    .chat-box {
-        background-color: #3b342f;
-        padding: 15px;
-        margin: 20px 0;
-        border-radius: 8px;
-    }
-
-    .login-box input {
-        padding: 10px;
-        width: 60%;
-    }
-
-    .login-box button {
-        padding: 10px 15px;
-        cursor: pointer;
-    }
-
-    .chat-box {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        padding: 10px;
-    }
-
-    .chat-box input {
-        flex: 1;
-        width: auto;
-        min-width: 0;
-        padding: 12px;
-        border: none;
-        border-radius: 20px;
-        outline: none;
-        font-size: 16px;
-    }
-
-    .chat-icon,
-    .send-button {
-        width: 42px;
-        height: 42px;
-        flex-shrink: 0;
-        padding: 0;
-        border: none;
-        border-radius: 50%;
-        cursor: pointer;
-        font-size: 20px;
-    }
-
-    .send-button {
-        font-size: 22px;
-    }
-
-    @media (max-width: 600px) {
-
-        .smoking-room {
-            width: auto;
-            margin: 15px 10px;
-            padding: 15px;
-        }
-
-        .login-box input {
-            width: 100%;
-            box-sizing: border-box;
-            margin-bottom: 10px;
-        }
-
-        .login-box button {
-            width: 100%;
-        }
-
-        .chat-box input {
-            margin-bottom: 0;
+        body {
+            margin: 0;
+            background-color: #4a4038;
+            color: #f5eadb;
+            font-family: Arial, sans-serif;
         }
 
         header {
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #f3c98b;
+        }
+
+        nav a {
+            color: #ffd9a0;
+            text-decoration: none;
+        }
+
+        .smoking-room {
+            background-color: #2f2925;
+            width: 90%;
+            max-width: 650px;
+            box-sizing: border-box;
+
+            padding: 25px;
+            margin: 30px auto;
+
+            border: 2px solid #8b6b4a;
+            border-radius: 15px;
+
+            box-shadow: 0 5px 15px #222;
+        }
+
+        .message {
+            background-color: #3b342f;
+
+            padding: 15px;
+            margin-top: 15px;
+
+            border-left: 5px solid #b58a5a;
+            border-radius: 8px;
+        }
+
+        .author {
+            color: #f3c98b;
+            font-weight: bold;
+        }
+
+        .login-box,
+        .people-box {
+            background-color: #3b342f;
+
+            padding: 15px;
+            margin: 20px 0;
+
+            border-radius: 8px;
+        }
+
+        .login-box input {
+            width: 60%;
+            box-sizing: border-box;
+
             padding: 10px;
         }
 
-        nav {
-            line-height: 2;
+        .login-box button {
+            padding: 10px 15px;
+            cursor: pointer;
         }
-    }
-</style>
+
+
+        /* Панель отправки сообщения */
+
+        .chat-box {
+            display: flex;
+            align-items: center;
+
+            gap: 8px;
+
+            background-color: #3b342f;
+
+            padding: 10px;
+            margin: 20px 0;
+
+            border-radius: 25px;
+        }
+
+        .chat-box input {
+            flex: 1;
+
+            width: auto;
+            min-width: 0;
+
+            padding: 12px 15px;
+
+            border: none;
+            border-radius: 20px;
+
+            outline: none;
+
+            font-size: 16px;
+        }
+
+        .chat-icon,
+        .send-button {
+            width: 42px;
+            height: 42px;
+
+            flex-shrink: 0;
+
+            padding: 0;
+
+            border: none;
+            border-radius: 50%;
+
+            cursor: pointer;
+
+            font-size: 20px;
+        }
+
+        .send-button {
+            font-size: 22px;
+        }
+
+
+        /* Телефон */
+
+        @media (max-width: 600px) {
+
+            header {
+                padding: 10px;
+            }
+
+            nav {
+                line-height: 2;
+            }
+
+            .smoking-room {
+                width: auto;
+
+                margin: 15px 10px;
+                padding: 15px;
+            }
+
+            .login-box input {
+                width: 100%;
+
+                margin-bottom: 10px;
+            }
+
+            .login-box button {
+                width: 100%;
+            }
+
+            .chat-box {
+                gap: 6px;
+                padding: 8px;
+            }
+
+            .chat-icon,
+            .send-button {
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+    </style>
 </head>
+
 
 <body>
 
     <header>
+
         <h1>Курилка</h1>
 
-        <p>Здесь можно присесть, поговорить и поделиться своими историями.</p>
+        <p>
+            Здесь можно присесть, поговорить и поделиться своими историями.
+        </p>
 
         <nav>
             <a href="index.html">Главная</a> |
@@ -150,7 +198,9 @@
             <a href="#">Советы</a> |
             <a href="#">Курилка</a>
         </nav>
+
     </header>
+
 
     <div class="smoking-room">
 
@@ -158,20 +208,39 @@
 
         <p>
             Здесь никто никуда не спешит.
-            Можно обсудить кофе, жизнь, работу и всё, что пришло в голову.
+            Можно обсудить кофе, жизнь, работу
+            и всё, что пришло в голову.
         </p>
 
-        <div class="message">
-            <p class="author">Аркаша:</p>
-            <p>Ну что, кто первый зашёл в Курилку?</p>
-        </div>
 
         <div class="message">
-            <p class="author">Анжела:</p>
-            <p>Я только на минутку. У меня кофе убежит.</p>
+
+            <p class="author">
+                Аркаша:
+            </p>
+
+            <p>
+                Ну что, кто первый зашёл в Курилку?
+            </p>
+
         </div>
+
+
+        <div class="message">
+
+            <p class="author">
+                Анжела:
+            </p>
+
+            <p>
+                Я только на минутку. У меня кофе убежит.
+            </p>
+
+        </div>
+
 
         <div class="login-box">
+
             <h3>Зайти в Курилку</h3>
 
             <input
@@ -180,35 +249,64 @@
                 placeholder="Введите имя или ник"
             >
 
-            <button id="login-button">Войти</button>
+            <button id="login-button">
+                Войти
+            </button>
 
             <p id="welcome"></p>
+
         </div>
 
+
         <div class="people-box">
+
             <h3>Сейчас в Курилке</h3>
 
             <ul id="people-list">
                 <li>Аркаша</li>
                 <li>Анжела</li>
             </ul>
+
         </div>
 
-        <div class="chat-box">
-            <button class="chat-icon" type="button">🙂</button>
-
-    <button class="chat-icon" type="button">📎</button>
-
-    <input
-        type="text"
-        id="message"
-        placeholder="Написать сообщение..."
-    >
-
-    <button id="send-button" class="send-button">➤</button>
-        </div>
 
         <div id="chat-messages"></div>
+
+
+        <div class="chat-box">
+
+            <button
+                class="chat-icon"
+                type="button"
+                title="Эмодзи"
+            >
+                🙂
+            </button>
+
+            <button
+                class="chat-icon"
+                type="button"
+                title="Прикрепить файл"
+            >
+                📎
+            </button>
+
+            <input
+                type="text"
+                id="message"
+                placeholder="Написать сообщение..."
+            >
+
+            <button
+                id="send-button"
+                class="send-button"
+                type="button"
+                title="Отправить"
+            >
+                ➤
+            </button>
+
+        </div>
 
     </div>
 
@@ -229,21 +327,40 @@
 
 
         const firebaseConfig = {
-            apiKey: "AIzaSyB60yxDm_FgW7JmeYAAr1covhkFaGk8-k8",
-            authDomain: "cafe-u-arkashi.firebaseapp.com",
-            databaseURL: "https://cafe-u-arkashi-default-rtdb.europe-west1.firebasedatabase.app",
-            projectId: "cafe-u-arkashi",
-            storageBucket: "cafe-u-arkashi.firebasestorage.app",
-            messagingSenderId: "589764953441",
-            appId: "1:589764953441:web:08ef627e7ef399e13b3120"
+
+            apiKey:
+                "AIzaSyB60yxDm_FgW7JmeYAAr1covhkFaGk8-k8",
+
+            authDomain:
+                "cafe-u-arkashi.firebaseapp.com",
+
+            databaseURL:
+                "https://cafe-u-arkashi-default-rtdb.europe-west1.firebasedatabase.app",
+
+            projectId:
+                "cafe-u-arkashi",
+
+            storageBucket:
+                "cafe-u-arkashi.firebasestorage.app",
+
+            messagingSenderId:
+                "589764953441",
+
+            appId:
+                "1:589764953441:web:08ef627e7ef399e13b3120"
         };
 
 
-        const app = initializeApp(firebaseConfig);
+        const app =
+            initializeApp(firebaseConfig);
 
-        const database = getDatabase(app);
 
-        const messagesRef = ref(database, "messages");
+        const database =
+            getDatabase(app);
+
+
+        const messagesRef =
+            ref(database, "messages");
 
 
         let currentUser =
@@ -252,26 +369,40 @@
 
         function enterSmokingRoom() {
 
-            let name =
-                document.getElementById("username").value.trim();
+            const name =
+                document
+                    .getElementById("username")
+                    .value
+                    .trim();
+
 
             if (name === "") {
-                document.getElementById("welcome").textContent =
+
+                document
+                    .getElementById("welcome")
+                    .textContent =
                     "Сначала представьтесь.";
+
                 return;
             }
 
+
             currentUser = name;
+
 
             localStorage.setItem(
                 "smokingRoomUser",
                 name
             );
 
-            document.getElementById("welcome").textContent =
-                "Добро пожаловать в Курилку, " +
-                name +
-                "!";
+
+            document
+                .getElementById("welcome")
+                .textContent =
+                "Добро пожаловать в Курилку, "
+                + name
+                + "!";
+
 
             addPersonToList(name);
         }
@@ -279,23 +410,28 @@
 
         function addPersonToList(name) {
 
-            let peopleList =
+            const peopleList =
                 document.getElementById("people-list");
 
-            let people =
+
+            const people =
                 peopleList.getElementsByTagName("li");
 
-            for (let person of people) {
+
+            for (const person of people) {
 
                 if (person.textContent === name) {
                     return;
                 }
             }
 
-            let newPerson =
+
+            const newPerson =
                 document.createElement("li");
 
+
             newPerson.textContent = name;
+
 
             peopleList.appendChild(newPerson);
         }
@@ -303,58 +439,98 @@
 
         async function sendMessage() {
 
-            let message =
-                document.getElementById("message").value.trim();
+            const message =
+                document
+                    .getElementById("message")
+                    .value
+                    .trim();
+
 
             if (currentUser === "") {
-                alert("Сначала зайдите в Курилку.");
+
+                alert(
+                    "Сначала зайдите в Курилку."
+                );
+
                 return;
             }
+
 
             if (message === "") {
-                alert("Напишите сообщение.");
+
+                alert(
+                    "Напишите сообщение."
+                );
+
                 return;
             }
 
-            await push(
-                messagesRef,
-                {
-                    author: currentUser,
-                    text: message,
-                    time: serverTimestamp()
-                }
-            );
 
-            document.getElementById("message").value = "";
+            try {
+
+                await push(
+                    messagesRef,
+                    {
+                        author: currentUser,
+                        text: message,
+                        time: serverTimestamp()
+                    }
+                );
+
+
+                document
+                    .getElementById("message")
+                    .value = "";
+
+            } catch (error) {
+
+                console.error(error);
+
+                alert(
+                    "Не удалось отправить сообщение."
+                );
+            }
         }
 
 
         function showMessage(author, text) {
 
-            let newMessage =
+            const newMessage =
                 document.createElement("div");
 
-            newMessage.className = "message";
+
+            newMessage.className =
+                "message";
 
 
-            let authorLine =
+            const authorLine =
                 document.createElement("p");
 
-            authorLine.className = "author";
+
+            authorLine.className =
+                "author";
+
 
             authorLine.textContent =
                 author + ":";
 
 
-            let messageLine =
+            const messageLine =
                 document.createElement("p");
 
-            messageLine.textContent = text;
+
+            messageLine.textContent =
+                text;
 
 
-            newMessage.appendChild(authorLine);
+            newMessage.appendChild(
+                authorLine
+            );
 
-            newMessage.appendChild(messageLine);
+
+            newMessage.appendChild(
+                messageLine
+            );
 
 
             document
@@ -365,13 +541,17 @@
 
         onChildAdded(
             messagesRef,
+
             function(snapshot) {
 
-                let message = snapshot.val();
+                const message =
+                    snapshot.val();
+
 
                 if (!message) {
                     return;
                 }
+
 
                 showMessage(
                     message.author,
@@ -385,15 +565,23 @@
 
             if (currentUser !== "") {
 
-                document.getElementById("username").value =
+                document
+                    .getElementById("username")
+                    .value =
                     currentUser;
 
-                document.getElementById("welcome").textContent =
-                    "С возвращением в Курилку, " +
-                    currentUser +
-                    "!";
 
-                addPersonToList(currentUser);
+                document
+                    .getElementById("welcome")
+                    .textContent =
+                    "С возвращением в Курилку, "
+                    + currentUser
+                    + "!";
+
+
+                addPersonToList(
+                    currentUser
+                );
             }
         }
 
@@ -418,6 +606,7 @@
             .getElementById("message")
             .addEventListener(
                 "keydown",
+
                 function(event) {
 
                     if (event.key === "Enter") {
