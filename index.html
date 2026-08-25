@@ -3,11 +3,38 @@
 
 <head>
     <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
     <title>Кафе у Аркаши</title>
 
+    <!-- Иконки Кафе у Аркаши -->
+
+    <link rel="icon"
+          href="favicon.ico"
+          sizes="any">
+
+    <link rel="apple-touch-icon"
+          href="apple-touch-icon.png">
+
+    <link rel="icon"
+          type="image/png"
+          sizes="192x192"
+          href="icon-192.png">
+
+    <link rel="icon"
+          type="image/png"
+          sizes="512x512"
+          href="icon-512.png">
+
+
     <style>
+
         body {
             background-color: beige;
+            margin: 0;
+            font-family: Arial, sans-serif;
         }
 
         h1 {
@@ -16,38 +43,99 @@
 
         header {
             text-align: center;
+            padding: 15px;
+        }
+
+        nav {
+            line-height: 2;
+        }
+
+        nav a {
+            color: brown;
         }
 
         .anzhela {
             background-color: white;
-            width: 400px;
+
+            width: 90%;
+            max-width: 400px;
+
+            box-sizing: border-box;
+
             padding: 20px;
             border: 2px solid brown;
+
             margin: 30px auto;
+
             border-radius: 15px;
+
             box-shadow: 0 5px 15px gray;
         }
+
+        .anzhela img {
+            display: block;
+
+            width: 100%;
+            height: auto;
+
+            border-radius: 8px;
+        }
+
+
+        /* Телефон */
+
+        @media (max-width: 600px) {
+
+            header {
+                padding: 10px;
+            }
+
+            .anzhela {
+                width: auto;
+
+                margin: 15px 10px;
+
+                padding: 15px;
+            }
+        }
+
     </style>
 </head>
+
 
 <body>
 
     <header>
+
         <h1>Кафе у Аркаши</h1>
-        <p>Заходи, располагайся. Кофе скоро будет!</p>
- <nav>
-        <a href="#">Главная</a> |
-    <a href="recipes.html">Рецепты</a> |
-    <a href="#">Советы</a> |
-    <a href="smoking-room.html">Курилка</a>
-</nav>
+
+        <p>
+            Заходи, располагайся. Кофе скоро будет!
+        </p>
+
+        <nav>
+            <a href="#">Главная</a> |
+            <a href="recipes.html">Рецепты</a> |
+            <a href="#">Советы</a> |
+            <a href="smoking-room.html">Курилка</a>
+        </nav>
 
     </header>
 
+
     <div class="anzhela">
+
         <h2>Сегодня в кафе</h2>
-        <img src="images/anzhela.png" width="400">
-        <p>Анжела встречает гостей</p>
+
+        <img
+            src="images/anzhela.png"
+            alt="Анжела встречает гостей"
+        >
+
+        <p>
+            Анжела встречает гостей
+        </p>
+
     </div>
 
 </body>
