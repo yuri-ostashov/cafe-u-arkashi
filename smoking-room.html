@@ -83,7 +83,7 @@
         }
 
 
-        /* Панель отправки сообщения */
+        /* Панель отправки */
 
         .chat-box {
             display: flex;
@@ -94,7 +94,7 @@
             background-color: #3b342f;
 
             padding: 10px;
-            margin: 20px 0;
+            margin: 20px 0 8px 0;
 
             border-radius: 25px;
         }
@@ -137,6 +137,39 @@
         }
 
 
+        /* Панель эмодзи */
+
+        .emoji-panel {
+            display: none;
+
+            flex-wrap: wrap;
+            gap: 8px;
+
+            background-color: #3b342f;
+
+            padding: 12px;
+            margin-bottom: 20px;
+
+            border-radius: 12px;
+        }
+
+        .emoji-panel.open {
+            display: flex;
+        }
+
+        .emoji-button {
+            width: 40px;
+            height: 40px;
+
+            border: none;
+            border-radius: 10px;
+
+            cursor: pointer;
+
+            font-size: 22px;
+        }
+
+
         /* Телефон */
 
         @media (max-width: 600px) {
@@ -175,6 +208,16 @@
             .send-button {
                 width: 40px;
                 height: 40px;
+            }
+
+            .emoji-panel {
+                gap: 6px;
+            }
+
+            .emoji-button {
+                width: 38px;
+                height: 38px;
+                font-size: 21px;
             }
         }
 
@@ -276,6 +319,7 @@
         <div class="chat-box">
 
             <button
+                id="emoji-toggle"
                 class="chat-icon"
                 type="button"
                 title="Эмодзи"
@@ -305,6 +349,31 @@
             >
                 ➤
             </button>
+
+        </div>
+
+
+        <div id="emoji-panel" class="emoji-panel">
+
+            <button class="emoji-button" type="button">😀</button>
+            <button class="emoji-button" type="button">😄</button>
+            <button class="emoji-button" type="button">😂</button>
+            <button class="emoji-button" type="button">😉</button>
+            <button class="emoji-button" type="button">😎</button>
+            <button class="emoji-button" type="button">🤔</button>
+            <button class="emoji-button" type="button">😡</button>
+
+            <button class="emoji-button" type="button">👍</button>
+            <button class="emoji-button" type="button">👎</button>
+            <button class="emoji-button" type="button">🤝</button>
+
+            <button class="emoji-button" type="button">❤️</button>
+            <button class="emoji-button" type="button">🔥</button>
+
+            <button class="emoji-button" type="button">☕</button>
+            <button class="emoji-button" type="button">🍾</button>
+            <button class="emoji-button" type="button">🥂</button>
+            <button class="emoji-button" type="button">🚬</button>
 
         </div>
 
@@ -539,6 +608,63 @@
         }
 
 
+        function toggleEmojiPanel() {
+
+            document
+                .getElementById("emoji-panel")
+                .classList
+                .toggle("open");
+        }
+
+
+        function insertEmoji(emoji) {
+
+            const messageInput =
+                document.getElementById("message");
+
+
+            const start =
+                messageInput.selectionStart;
+
+
+            const end =
+                messageInput.selectionEnd;
+
+
+            const before =
+                messageInput.value.substring(
+                    0,
+                    start
+                );
+
+
+            const after =
+                messageInput.value.substring(
+                    end
+                );
+
+
+            messageInput.value =
+                before
+                + emoji
+                + after;
+
+
+            const newPosition =
+                start
+                + emoji.length;
+
+
+            messageInput.focus();
+
+
+            messageInput.setSelectionRange(
+                newPosition,
+                newPosition
+            );
+        }
+
+
         onChildAdded(
             messagesRef,
 
@@ -599,6 +725,33 @@
             .addEventListener(
                 "click",
                 sendMessage
+            );
+
+
+        document
+            .getElementById("emoji-toggle")
+            .addEventListener(
+                "click",
+                toggleEmojiPanel
+            );
+
+
+        document
+            .querySelectorAll(".emoji-button")
+            .forEach(
+                function(button) {
+
+                    button.addEventListener(
+                        "click",
+
+                        function() {
+
+                            insertEmoji(
+                                button.textContent
+                            );
+                        }
+                    );
+                }
             );
 
 
