@@ -4,46 +4,143 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Курилка — Кафе у Аркаши</title>
+<link rel="icon" href="favicon.ico">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <style>
-body{margin:0;background:#4a4038;color:#f5eadb;font-family:Arial,sans-serif}
-header{text-align:center;padding:20px}h1{color:#f3c98b}nav a{color:#ffd9a0;text-decoration:none}
-.smoking-room{background:#2f2925;width:90%;max-width:650px;box-sizing:border-box;padding:25px;margin:30px auto;border:2px solid #8b6b4a;border-radius:15px;box-shadow:0 5px 15px #222}
-.login-box,.user-bar,.people-box{background:#3b342f;padding:15px;margin:20px 0;border-radius:8px}
-.login-box input{width:60%;box-sizing:border-box;padding:10px}.login-box button{padding:10px 15px;cursor:pointer}
-.user-bar{display:none;align-items:center;justify-content:space-between;gap:10px}.user-bar.visible{display:flex}
-.user-name{font-weight:bold;color:#f3c98b}.change-user-button{padding:8px 12px;border:0;border-radius:8px;cursor:pointer}
-.chat-messages{display:flex;flex-direction:column;gap:10px;margin-top:20px}.message-row{display:flex;width:100%}
-.message-row.own{justify-content:flex-end}.message-row.other{justify-content:flex-start}
-.message-bubble{position:relative;max-width:78%;padding:10px 12px;border-radius:14px;box-sizing:border-box;word-wrap:break-word}
-.message-row.other .message-bubble{background:#3b342f;border-bottom-left-radius:4px}
+:root{
+ --cream:#f6f0df;--paper:#fffaf1;--coffee:#5b2f20;--dark:#302721;
+ --panel:#3b312b;--panel2:#443932;--gold:#d4a35e;--text:#fff5e8;
+ --muted:#cdbdad;--line:rgba(212,163,94,.28)
+}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(180deg,#4a4038,#3d342e);color:var(--text);font-family:Arial,sans-serif}
+.page{width:min(1220px,calc(100% - 36px));margin:auto}
+header{padding:22px 0 16px}
+.topbar{
+      position:sticky; top:10px; z-index:1000;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:13px 18px;border:1px solid var(--line);border-radius:18px;background:#fffaf1;color:#3f2118;box-shadow:0 10px 28px rgba(0,0,0,.15)}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;font-family:Georgia,serif;font-size:22px;font-weight:bold}
+.brand-mark{width:40px;height:40px;display:grid;place-items:center;border-radius:50%;background:var(--coffee);color:white}
+nav{display:flex;flex-wrap:wrap;gap:7px}
+nav a{text-decoration:none;padding:9px 13px;border-radius:999px;color:#3f2118;font-size:14px}
+nav a:hover,nav a.active{background:var(--coffee);color:white}
+.intro{padding:18px 4px 20px}
+.intro h1{margin:0;color:#f3c98b;font:700 clamp(38px,5vw,62px)/1 Georgia,serif}
+.intro p{margin:10px 0 0;color:#eadccc;font-size:18px}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:20px;padding-bottom:35px}
+.chat-card,.side-card{border:1px solid var(--line);background:var(--dark);border-radius:20px;box-shadow:0 12px 32px rgba(0,0,0,.18)}
+.chat-card{padding:20px;min-width:0}
+.chat-title{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+.chat-title h2{margin:0;font:700 27px Georgia,serif;color:#fff3df}
+.chat-title span{font-size:13px;color:var(--muted)}
+.login-box,.user-bar,.people-box{background:var(--panel);padding:14px;border-radius:12px}
+.login-box{margin-bottom:12px}.login-box h3{margin-top:0}
+.login-box input{width:65%;padding:11px;border:0;border-radius:9px}.login-box button,.change-user-button{padding:10px 14px;border:0;border-radius:9px;cursor:pointer}
+.user-bar{display:none;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}.user-bar.visible{display:flex}
+.user-name{font-weight:bold;color:#f3c98b}
+.chat-shell{display:flex;flex-direction:column;height:min(660px,68vh);min-height:480px;border-radius:15px;overflow:hidden;background:#352d28;border:1px solid rgba(255,255,255,.05)}
+.chat-messages{flex:1;min-height:0;overflow-y:auto;display:flex;flex-direction:column;gap:10px;padding:16px;scrollbar-color:#765a43 #352d28}
+.message-row{display:flex;width:100%}.message-row.own{justify-content:flex-end}.message-row.other{justify-content:flex-start}
+.message-bubble{position:relative;max-width:78%;padding:11px 13px;border-radius:14px;word-wrap:break-word}
+.message-row.other .message-bubble{background:var(--panel2);border-bottom-left-radius:4px}
 .message-row.own .message-bubble{background:#6f5338;border-bottom-right-radius:4px;padding-right:42px}
-.message-author{color:#f3c98b;font-size:13px;font-weight:bold;margin-bottom:4px}.message-text{font-size:16px;line-height:1.35;white-space:pre-wrap}
-.message-time{margin-top:5px;font-size:11px;opacity:.7;text-align:right}.edited-mark{margin-left:5px;font-size:10px;opacity:.75}.deleted-message{font-style:italic;opacity:.65}
-.message-menu-button{position:absolute;top:6px;right:7px;width:28px;height:28px;padding:0;border:0;border-radius:50%;background:transparent;color:#f5eadb;cursor:pointer;font-size:20px;line-height:28px}
-.message-menu{display:none;position:absolute;top:34px;right:7px;z-index:20;min-width:130px;overflow:hidden;background:#efe3d2;border-radius:8px;box-shadow:0 4px 14px rgba(0,0,0,.35)}
+.message-author{color:#f3c98b;font-size:13px;font-weight:bold;margin-bottom:4px}.message-text{font-size:16px;line-height:1.4;white-space:pre-wrap}
+.message-time{margin-top:5px;font-size:11px;opacity:.7;text-align:right}.edited-mark{margin-left:5px;font-size:10px}.deleted-message{font-style:italic;opacity:.65}
+.message-menu-button{position:absolute;top:6px;right:7px;width:28px;height:28px;border:0;border-radius:50%;background:transparent;color:#fff;cursor:pointer;font-size:20px}
+.message-menu{display:none;position:absolute;top:34px;right:7px;z-index:20;min-width:130px;overflow:hidden;background:#efe3d2;border-radius:8px;box-shadow:0 4px 14px #0008}
 .message-menu.open{display:block}.message-menu button{display:block;width:100%;padding:9px 12px;border:0;background:transparent;text-align:left;cursor:pointer;color:#2f2925}
-.edit-area{width:100%;min-height:70px;box-sizing:border-box;resize:vertical;padding:8px;border:0;border-radius:8px;font:15px Arial,sans-serif}
-.edit-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:8px}.edit-actions button{padding:7px 10px;border:0;border-radius:7px;cursor:pointer}
-.chat-box{display:flex;align-items:center;gap:8px;background:#3b342f;padding:10px;margin:20px 0 8px;border-radius:25px}
-.chat-box input{flex:1;width:auto;min-width:0;padding:12px 15px;border:0;border-radius:20px;outline:none;font-size:16px}
+.edit-area{width:100%;min-height:70px;padding:8px;border:0;border-radius:8px;font:15px Arial,sans-serif}.edit-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:8px}.edit-actions button{padding:7px 10px;border:0;border-radius:7px}
+.composer{background:#29231f;border-top:1px solid var(--line);padding:10px}
+.chat-box{display:flex;align-items:center;gap:8px;background:var(--panel);padding:8px;border-radius:24px}
+.chat-box input{flex:1;min-width:0;padding:12px 15px;border:0;border-radius:20px;outline:none;font-size:16px}
 .chat-icon,.send-button{width:42px;height:42px;flex-shrink:0;padding:0;border:0;border-radius:50%;cursor:pointer;font-size:20px}.send-button{font-size:22px}
-.emoji-panel{display:none;flex-wrap:wrap;gap:8px;background:#3b342f;padding:12px;margin-bottom:20px;border-radius:12px}.emoji-panel.open{display:flex}
-.emoji-button{width:40px;height:40px;border:0;border-radius:10px;cursor:pointer;font-size:22px}
-@media(max-width:600px){header{padding:10px}nav{line-height:2}.smoking-room{width:auto;margin:15px 10px;padding:15px}.login-box input{width:100%;margin-bottom:10px}.login-box button{width:100%}.user-bar{flex-direction:column;align-items:stretch}.change-user-button{width:100%}.message-bubble{max-width:86%}.chat-box{gap:6px;padding:8px}.chat-icon,.send-button{width:40px;height:40px}.emoji-panel{gap:6px}.emoji-button{width:38px;height:38px;font-size:21px}}
+.emoji-panel{display:none;flex-wrap:wrap;gap:7px;padding:10px 4px 0}.emoji-panel.open{display:flex}.emoji-button{width:38px;height:38px;border:0;border-radius:10px;cursor:pointer;font-size:21px}
+.sidebar{display:flex;flex-direction:column;gap:16px}.side-card{padding:18px}.side-card h3{margin:0 0 12px;font:700 20px Georgia,serif;color:#f3c98b}
+.people-box{margin:0;padding:0;background:transparent}.people-box ul{margin:0;padding-left:20px;line-height:1.8}
+.book-window{background:linear-gradient(145deg,#6a422b,#4b2d20);border:1px solid #9d704d}
+.book-window p{color:#ead8c8;line-height:1.45;font-size:14px}
+.book-button{width:100%;padding:11px;border:1px solid #d8b078;border-radius:10px;background:#f4dfba;color:#4a2d1f;font-weight:bold;cursor:pointer}
+.book-hint{margin-top:10px;font-size:12px!important;opacity:.8}
+@media(max-width:850px){.layout{grid-template-columns:1fr}.sidebar{grid-row:1}.chat-shell{height:65vh}.side-card{padding:15px}}
+@media(max-width:560px){
+      .topbar{top:6px}.page{width:calc(100% - 18px)}.topbar{align-items:flex-start;flex-direction:column}.intro{padding-top:8px}.chat-card{padding:10px}.chat-shell{height:68vh;min-height:430px}.message-bubble{max-width:88%}.login-box input{width:100%;margin-bottom:8px}.login-box button{width:100%}.user-bar{flex-direction:column;align-items:stretch}.change-user-button{width:100%}}
+
+.book-transfer{
+ position:absolute;bottom:6px;left:7px;width:30px;height:27px;border:0;border-radius:8px;
+ background:rgba(255,250,241,.10);color:#f4d39d;cursor:pointer;font-size:15px;
+ opacity:.78
+}
+.book-transfer:hover{opacity:1;background:rgba(255,250,241,.18)}
+.message-bubble{padding-bottom:35px}
+.book-draft{display:none;margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,.18)}
+.book-draft.open{display:block}
+.book-source{margin-bottom:8px;font-size:12px;color:#e8cfae}
+.book-draft textarea{
+ width:100%;min-height:110px;resize:vertical;padding:10px;border:0;border-radius:10px;
+ background:#fff8ea;color:#35241a;font:14px/1.4 Arial,sans-serif
+}
+.book-draft select{
+ width:100%;margin-top:8px;padding:9px;border:0;border-radius:9px;background:#fff8ea;color:#35241a
+}
+.book-actions{display:flex;gap:8px;margin-top:9px}
+.book-actions button{flex:1;padding:10px;border:0;border-radius:9px;cursor:pointer;font-weight:bold}
+.book-save{background:#f4dfba;color:#4a2d1f}.book-cancel{background:rgba(255,255,255,.14);color:#fff}
+.book-status{min-height:18px;margin:9px 0 0;font-size:12px!important;color:#ffe0a8!important}
+
 </style>
 </head>
 <body>
-<header><h1>Курилка</h1><p>Здесь можно присесть, поговорить и поделиться своими историями.</p><nav><a href="index.html">Главная</a> | <a href="recipes.html">Рецепты</a> | <a href="#">Советы</a> | <a href="#">Курилка</a></nav></header>
-<div class="smoking-room">
-<h2>Разговоры без галстуков</h2>
-<div id="login-box" class="login-box"><h3>Зайти в Курилку</h3><input type="text" id="username" placeholder="Введите имя или ник"><button id="login-button">Войти</button><p id="welcome"></p></div>
-<div id="user-bar" class="user-bar"><div>Вы вошли как <span id="current-user-name" class="user-name"></span></div><button id="change-user-button" class="change-user-button" type="button">Сменить имя</button></div>
-<div id="chat-messages" class="chat-messages"></div>
-<div class="chat-box"><button id="emoji-toggle" class="chat-icon" type="button" title="Эмодзи">🙂</button><button class="chat-icon" type="button" title="Прикрепить файл">📎</button><input type="text" id="message" placeholder="Написать сообщение..."><button id="send-button" class="send-button" type="button" title="Отправить">➤</button></div>
-<div id="emoji-panel" class="emoji-panel">😀 😄 😂 😉 😎 🤔 😡 👍 👎 🤝 ❤️ 🔥 ☕ 🍾 🥂 🚬</div>
-<div class="people-box"><h3>Сейчас в Курилке</h3><ul id="people-list"><li>Аркаша</li><li>Анжела</li></ul></div>
-</div>
+<div class="page">
+<header>
+ <div class="topbar">
+  <a class="brand" href="index.html"><span class="brand-mark">☕</span><span>Кафе у Аркаши</span></a>
+  <nav><a href="index.html">Главная</a><a href="recipes.html">Рецепты</a><a href="feedback.html">Книга</a><a class="active" href="smoking-room.html">Курилка</a></nav>
+ </div>
+</header>
+<section class="intro"><h1>Курилка</h1><p>Разговоры без галстуков. Здесь никто никуда не спешит.</p></section>
 
+<div class="layout">
+ <main class="chat-card">
+  <div class="chat-title"><h2>Разговор</h2><span>Кофе можно брать с собой ☕</span></div>
+  <div id="login-box" class="login-box"><h3>Зайти в Курилку</h3><input type="text" id="username" placeholder="Введите имя или ник"><button id="login-button">Войти</button><p id="welcome"></p></div>
+  <div id="user-bar" class="user-bar"><div>Вы вошли как <span id="current-user-name" class="user-name"></span></div><button id="change-user-button" class="change-user-button" type="button">Сменить имя</button></div>
+
+  <div class="chat-shell">
+   <div id="chat-messages" class="chat-messages"></div>
+   <div class="composer">
+    <div class="chat-box"><button id="emoji-toggle" class="chat-icon" type="button" title="Эмодзи">🙂</button><button class="chat-icon" type="button" title="Прикрепить файл">📎</button><input type="text" id="message" placeholder="Написать сообщение..."><button id="send-button" class="send-button" type="button" title="Отправить">➤</button></div>
+    <div id="emoji-panel" class="emoji-panel">😀 😄 😂 😉 😎 🤔 😡 👍 👎 🤝 ❤️ 🔥 ☕ 🍾 🥂 🚬</div>
+   </div>
+  </div>
+ </main>
+
+ <aside class="sidebar">
+  <section class="side-card"><div class="people-box"><h3>Сейчас в Курилке</h3><ul id="people-list"><li>Аркаша</li><li>Анжела</li></ul></div></section>
+  <section class="side-card book-window" id="book-window">
+   <h3>📖 Книга жалоб и предложений</h3>
+   <p id="book-intro">Нашёл хорошую мысль? Нажми маленькую 📖 у сообщения. Если сначала выделить часть текста — в книгу уйдёт только выделенное.</p>
+
+   <div id="book-draft" class="book-draft">
+    <div id="book-source" class="book-source"></div>
+    <textarea id="book-text" placeholder="Текст для книги..."></textarea>
+    <select id="book-category">
+      <option value="Предложение">Предложение</option>
+      <option value="Рецепт">Рецепт</option>
+      <option value="Совет">Совет</option>
+      <option value="История">История</option>
+      <option value="Жалоба">Жалоба</option>
+    </select>
+    <div class="book-actions">
+      <button id="book-save" class="book-save" type="button">Добавить в книгу</button>
+      <button id="book-cancel" class="book-cancel" type="button">Отмена</button>
+    </div>
+    <p id="book-status" class="book-status"></p>
+   </div>
+
+   <p class="book-hint">Рецепты · предложения · жалобы · истории · советы</p>
+  </section>
+ </aside>
+</div>
+</div>
 <script type="module">
 import {initializeApp} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
 import {getDatabase,ref,push,onValue,update,serverTimestamp} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-database.js";
@@ -58,10 +155,11 @@ messagingSenderId:"589764953441",
 appId:"1:589764953441:web:08ef627e7ef399e13b3120"
 };
 
-const app=initializeApp(firebaseConfig),database=getDatabase(app),messagesRef=ref(database,"messages");
+const app=initializeApp(firebaseConfig),database=getDatabase(app),messagesRef=ref(database,"messages"),bookEntriesRef=ref(database,"bookEntries");
 let currentUser=localStorage.getItem("smokingRoomUser")||"";
 let currentUserId=localStorage.getItem("smokingRoomUserId")||"";
 let lastMessages=[];
+let currentBookSource=null;
 
 function createUserId(){
  if(window.crypto&&crypto.randomUUID)return "user_"+crypto.randomUUID();
@@ -115,7 +213,9 @@ function showLocalMessage(author,text){
  const bubble=document.createElement("div");bubble.className="message-bubble";
  const a=document.createElement("div");a.className="message-author";a.textContent=author;
  const t=document.createElement("div");t.className="message-text";t.textContent=text;
- bubble.append(a,t);row.appendChild(bubble);document.getElementById("chat-messages").appendChild(row);
+ bubble.append(a,t);
+ addBookTransferButton(bubble,{id:"local-"+author,text,author,userId:"",deleted:false});
+ row.appendChild(bubble);document.getElementById("chat-messages").appendChild(row);
 }
 function showMessage(m){
  const row=document.createElement("div");
@@ -129,9 +229,80 @@ function showMessage(m){
  const tm=document.createElement("div");tm.className="message-time";tm.textContent=formatTime(m.time);
  if(m.edited&&!m.deleted){const mark=document.createElement("span");mark.className="edited-mark";mark.textContent=" изменено";tm.appendChild(mark)}
  bubble.append(a,t,tm);
+ if(!m.deleted)addBookTransferButton(bubble,m);
  if(own&&!legacy&&!m.deleted)addOwnMessageMenu(bubble,m);
  row.appendChild(bubble);document.getElementById("chat-messages").appendChild(row);
 }
+
+function getSelectedTextInside(bubble,fallback){
+ const sel=window.getSelection();
+ if(!sel||sel.rangeCount===0)return fallback||"";
+ const text=sel.toString().trim();
+ if(!text)return fallback||"";
+ const range=sel.getRangeAt(0);
+ const node=range.commonAncestorContainer.nodeType===1?range.commonAncestorContainer:range.commonAncestorContainer.parentElement;
+ return node&&bubble.contains(node)?text:(fallback||"");
+}
+function addBookTransferButton(bubble,m){
+ const btn=document.createElement("button");
+ btn.className="book-transfer";
+ btn.type="button";
+ btn.title="Отправить в книгу";
+ btn.textContent="📖";
+ let captured="";
+ btn.addEventListener("mousedown",()=>{captured=getSelectedTextInside(bubble,m.text||"")});
+ btn.addEventListener("click",e=>{
+  e.stopPropagation();
+  const text=captured||getSelectedTextInside(bubble,m.text||"");
+  openBookDraft(m,text);
+  captured="";
+ });
+ bubble.appendChild(btn);
+}
+function openBookDraft(m,text){
+ currentBookSource=m;
+ const draft=document.getElementById("book-draft");
+ const source=document.getElementById("book-source");
+ const ta=document.getElementById("book-text");
+ const status=document.getElementById("book-status");
+ source.textContent="Из разговора · "+(m.author||"Гость");
+ ta.value=(text||m.text||"").trim();
+ status.textContent="";
+ draft.classList.add("open");
+ document.getElementById("book-window").scrollIntoView({behavior:"smooth",block:"nearest"});
+ setTimeout(()=>{ta.focus();ta.setSelectionRange(ta.value.length,ta.value.length)},150);
+}
+function closeBookDraft(){
+ currentBookSource=null;
+ document.getElementById("book-draft").classList.remove("open");
+ document.getElementById("book-text").value="";
+ document.getElementById("book-status").textContent="";
+}
+async function saveBookDraft(){
+ const text=document.getElementById("book-text").value.trim();
+ const category=document.getElementById("book-category").value;
+ const status=document.getElementById("book-status");
+ if(!text){status.textContent="Сначала нужен текст.";return}
+ if(!currentUser){status.textContent="Сначала зайдите в Курилку под своим ником.";return}
+ status.textContent="Записываю…";
+ try{
+  await push(bookEntriesRef,{
+   author:currentUser,
+   userId:ensureUserId(),
+   category,
+   text,
+   sourceAuthor:currentBookSource?.author||"",
+   sourceMessageId:currentBookSource?.id||"",
+   time:serverTimestamp()
+  });
+  status.textContent="Готово. Запись добавлена в книгу ✓";
+  setTimeout(closeBookDraft,1200);
+ }catch(error){
+  console.error(error);
+  status.textContent="Не получилось записать. Проверим Firebase.";
+ }
+}
+
 function addOwnMessageMenu(bubble,m){
  const btn=document.createElement("button");btn.className="message-menu-button";btn.type="button";btn.textContent="⋮";
  const menu=document.createElement("div");menu.className="message-menu";
@@ -191,7 +362,18 @@ document.getElementById("send-button").addEventListener("click",sendMessage);
 document.getElementById("emoji-toggle").addEventListener("click",toggleEmojiPanel);
 document.getElementById("message").addEventListener("keydown",e=>{if(e.key==="Enter")sendMessage()});
 document.addEventListener("click",()=>document.querySelectorAll(".message-menu.open").forEach(m=>m.classList.remove("open")));
+document.getElementById("book-save").addEventListener("click",saveBookDraft);
+document.getElementById("book-cancel").addEventListener("click",closeBookDraft);
 loadSmokingRoom();
+</script>
+
+<script>
+/* Держим последнее сообщение перед глазами после обновления ленты. */
+const chatObserver=new MutationObserver(()=>{
+ const chat=document.getElementById("chat-messages");
+ chat.scrollTop=chat.scrollHeight;
+});
+chatObserver.observe(document.getElementById("chat-messages"),{childList:true});
 </script>
 </body>
 </html>

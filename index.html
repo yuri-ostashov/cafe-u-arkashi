@@ -1,143 +1,160 @@
 <!DOCTYPE html>
 <html lang="ru">
-
 <head>
-    <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>Кафе у Аркаши</title>
-
-    <!-- Иконки Кафе у Аркаши -->
-
-    <link rel="icon"
-          href="favicon.ico"
-          sizes="any">
-
-    <link rel="apple-touch-icon"
-          href="apple-touch-icon.png">
-
-    <link rel="icon"
-          type="image/png"
-          sizes="192x192"
-          href="icon-192.png">
-
-    <link rel="icon"
-          type="image/png"
-          sizes="512x512"
-          href="icon-512.png">
-
-
-    <style>
-
-        body {
-            background-color: beige;
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
-
-        h1 {
-            color: brown;
-        }
-
-        header {
-            text-align: center;
-            padding: 15px;
-        }
-
-        nav {
-            line-height: 2;
-        }
-
-        nav a {
-            color: brown;
-        }
-
-        .anzhela {
-            background-color: white;
-
-            width: 90%;
-            max-width: 400px;
-
-            box-sizing: border-box;
-
-            padding: 20px;
-            border: 2px solid brown;
-
-            margin: 30px auto;
-
-            border-radius: 15px;
-
-            box-shadow: 0 5px 15px gray;
-        }
-
-        .anzhela img {
-            display: block;
-
-            width: 100%;
-            height: auto;
-
-            border-radius: 8px;
-        }
-
-
-        /* Телефон */
-
-        @media (max-width: 600px) {
-
-            header {
-                padding: 10px;
-            }
-
-            .anzhela {
-                width: auto;
-
-                margin: 15px 10px;
-
-                padding: 15px;
-            }
-        }
-
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Кафе у Аркаши</title>
+<link rel="icon" href="favicon.ico">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<style>
+:root{
+  --bg:#f6f0df; --paper:#fffaf1; --coffee:#5b2f20; --coffee-dark:#3f2118;
+  --accent:#b33a2e; --gold:#c9a35b; --text:#2e231e; --muted:#74655c;
+  --line:rgba(91,47,32,.14); --shadow:0 20px 50px rgba(72,43,24,.14);
+}
+*{box-sizing:border-box}
+body{
+  margin:0; min-height:100vh; color:var(--text);
+  font-family:Georgia,"Times New Roman",serif;
+  background:radial-gradient(circle at top left,rgba(201,163,91,.18),transparent 28%),
+             linear-gradient(180deg,#f8f3e5 0%,#f4edda 100%);
+}
+.page{width:min(1180px,calc(100% - 40px));margin:0 auto}
+header{padding:26px 0 18px}
+.topbar{
+  position:sticky;top:10px;z-index:1000;
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+  padding:14px 18px;border:1px solid var(--line);border-radius:18px;
+  background:rgba(255,250,241,.86);box-shadow:0 10px 28px rgba(72,43,24,.08)
+}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand-mark{
+  width:42px;height:42px;display:grid;place-items:center;border-radius:50%;
+  background:var(--coffee);color:#fff7e8;font-size:22px
+}
+.brand-text{font-weight:700;color:var(--coffee-dark);font-size:22px}
+nav{display:flex;flex-wrap:wrap;gap:8px}
+nav a{
+  text-decoration:none;padding:10px 14px;border-radius:999px;
+  font-family:Arial,sans-serif;font-size:15px;color:var(--coffee-dark)
+}
+nav a:hover,nav a.active{background:var(--coffee);color:#fff}
+main{padding:28px 0 54px}
+.hero{
+  display:grid;grid-template-columns:1.05fr .95fr;align-items:center;
+  gap:46px;min-height:620px
+}
+.eyebrow{
+  margin:0 0 12px;font-family:Arial,sans-serif;font-size:14px;font-weight:700;
+  letter-spacing:1.8px;text-transform:uppercase;color:var(--accent)
+}
+h1{
+  margin:0;font-size:clamp(48px,6vw,82px);line-height:.98;
+  color:var(--coffee-dark);letter-spacing:-1.8px
+}
+.lead{
+  max-width:650px;margin:24px 0 0;font-size:clamp(20px,2vw,26px);
+  line-height:1.5;color:var(--muted)
+}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.button{
+  display:inline-flex;align-items:center;justify-content:center;min-height:48px;
+  padding:0 20px;border-radius:14px;text-decoration:none;font-family:Arial,sans-serif;
+  font-size:15px;font-weight:700
+}
+.button-primary{color:#fff;background:var(--coffee);box-shadow:0 10px 22px rgba(91,47,32,.22)}
+.button-secondary{color:var(--coffee-dark);background:var(--paper);border:1px solid var(--line)}
+.note{
+  margin-top:30px;display:flex;gap:12px;max-width:620px;padding:14px 16px;
+  border-left:4px solid var(--gold);background:rgba(255,255,255,.44);
+  border-radius:0 12px 12px 0;color:var(--muted);line-height:1.45
+}
+.feature-card{
+  position:relative;overflow:hidden;border-radius:26px;background:var(--paper);
+  border:1px solid var(--line);box-shadow:var(--shadow)
+}
+.feature-card:before{
+  content:"Сегодня в кафе";position:absolute;z-index:2;top:18px;left:18px;
+  padding:8px 12px;border-radius:999px;background:rgba(63,33,24,.88);
+  color:#fff;font-family:Arial,sans-serif;font-size:13px;font-weight:700
+}
+.feature-card img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover}
+.feature-body{padding:22px 24px 24px}
+.feature-body h2{margin:0 0 8px;color:var(--coffee-dark);font-size:31px}
+.feature-body p{margin:0;font-size:18px;line-height:1.5;color:var(--muted)}
+.mini-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
+.mini-card{
+  padding:20px;border-radius:18px;background:rgba(255,250,241,.72);
+  border:1px solid var(--line);min-height:145px
+}
+.mini-card strong{display:block;margin-bottom:8px;font-size:19px;color:var(--coffee-dark)}
+.mini-card p{margin:0;color:var(--muted);line-height:1.5;font-size:15px}
+footer{padding:22px 0 34px;color:var(--muted);font-family:Arial,sans-serif;font-size:13px;text-align:center}
+@media(max-width:900px){
+  .topbar{align-items:flex-start;flex-direction:column}
+  .hero{grid-template-columns:1fr;min-height:0}
+  .mini-grid{grid-template-columns:1fr}
+}
+@media(max-width:560px){
+  .topbar{top:6px}
+  .page{width:min(100% - 22px,1180px)}
+  nav a{padding:9px 11px;font-size:14px}
+  h1{font-size:48px}
+  .lead{font-size:19px}
+  .hero-actions{flex-direction:column}
+  .button{width:100%}
+}
+</style>
 </head>
-
-
 <body>
+<div class="page">
+<header>
+  <div class="topbar">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">☕</span>
+      <span class="brand-text">Кафе у Аркаши</span>
+    </a>
+    <nav aria-label="Главное меню">
+      <a class="active" href="index.html">Главная</a>
+      <a href="recipes.html">Рецепты</a>
+      <a href="feedback.html">Книга</a>
+      <a href="smoking-room.html">Курилка</a>
+    </nav>
+  </div>
+</header>
 
-    <header>
+<main>
+<section class="hero">
+  <div>
+    <p class="eyebrow">Добро пожаловать</p>
+    <h1>Заходи.<br>Кофе уже почти готов.</h1>
+    <p class="lead">Место для разговоров, рецептов, историй и хорошего настроения. Без официоза — как будто заглянул к знакомым на чашку кофе.</p>
 
-        <h1>Кафе у Аркаши</h1>
-
-        <p>
-            Заходи, располагайся. Кофе скоро будет!
-        </p>
-
-        <nav>
-            <a href="#">Главная</a> |
-            <a href="recipes.html">Рецепты</a> |
-            <a href="#">Советы</a> |
-            <a href="smoking-room.html">Курилка</a>
-        </nav>
-
-    </header>
-
-
-    <div class="anzhela">
-
-        <h2>Сегодня в кафе</h2>
-
-        <img
-            src="images/anzhela.png"
-            alt="Анжела встречает гостей"
-        >
-
-        <p>
-            Анжела встречает гостей
-        </p>
-
+    <div class="hero-actions">
+      <a class="button button-primary" href="smoking-room.html">Зайти в Курилку</a>
+      <a class="button button-secondary" href="recipes.html">Посмотреть рецепты</a>
     </div>
 
-</body>
+    <div class="note"><span>☕</span><span>Кафе пока строится, но двери уже открыты. Тут можно спокойно пробовать новое, не боясь испачкать скатерть кодом.</span></div>
 
+    <div class="mini-grid">
+      <div class="mini-card"><strong>Рецепты</strong><p>От кофе «3-в-1» до вещей посерьёзнее. Собираем нашу собственную книгу.</p></div>
+      <div class="mini-card"><strong>Книга</strong><p>Предложения, жалобы, истории и советы — всё, что гости решили сохранить из разговоров.</p></div>
+      <div class="mini-card"><strong>Курилка</strong><p>Разговоры без галстуков. Сюда приходят не только за кофе.</p></div>
+    </div>
+  </div>
+
+  <article class="feature-card">
+    <img src="images/anzhela.png" alt="Анжела встречает гостей в Кафе у Аркаши">
+    <div class="feature-body">
+      <h2>Анжела встречает гостей</h2>
+      <p>Кофе на стойке, свет включён — можно располагаться.</p>
+    </div>
+  </article>
+</section>
+</main>
+
+<footer>Кафе у Аркаши · учебная площадка, которая понемногу становится настоящим местом</footer>
+</div>
+</body>
 </html>

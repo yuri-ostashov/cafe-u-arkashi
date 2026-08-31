@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Книга жалоб и предложений — Кафе у Аркаши</title>
+  <link rel="icon" href="favicon.ico" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <style>
+    *{box-sizing:border-box}
+    :root{
+      --bg:#2b1b15;
+      --panel:#f4e4c3;
+      --paper:#fff9eb;
+      --ink:#3d2a20;
+      --muted:#7d6657;
+      --line:#d9c49e;
+      --accent:#8b5e3c;
+      --accent2:#b78355;
+      --white:#fff;
+    }
+    body{
+      margin:0;
+      font-family:Arial,Helvetica,sans-serif;
+      background:
+        radial-gradient(circle at top left,rgba(255,255,255,.035),transparent 28%),
+        radial-gradient(circle at bottom right,rgba(255,255,255,.025),transparent 32%),
+        var(--bg);
+      color:var(--ink);
+    }
+    a{text-decoration:none;color:inherit}
+    .page{max-width:1180px;margin:0 auto;padding:24px 18px 40px}
+    .topbar{
+      position:sticky;top:10px;z-index:1000;
+      background:#fff;
+      border-radius:22px;
+      padding:14px 18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      box-shadow:0 12px 35px rgba(0,0,0,.18);
+      margin-bottom:26px;
+    }
+    .brand{
+      display:flex;align-items:center;gap:10px;font-weight:800;color:#3b281f;
+      white-space:nowrap
+    }
+    .brand-mark{
+      width:40px;height:40px;border-radius:50%;
+      display:grid;place-items:center;background:#f0dfc2;font-size:21px
+    }
+    .nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end}
+    .nav a{
+      padding:9px 12px;border-radius:12px;color:#4f3c31;font-size:14px
+    }
+    .nav a:hover,.nav a.active{background:#f3eadc}
+
+    .hero{
+      text-align:center;color:#fff;margin:12px auto 24px;max-width:800px
+    }
+    .eyebrow{
+      font-size:12px;letter-spacing:.18em;text-transform:uppercase;
+      color:#d8b98f;font-weight:700
+    }
+    h1{
+      font-family:Georgia,"Times New Roman",serif;
+      font-size:clamp(34px,6vw,64px);
+      line-height:1.02;margin:10px 0 12px
+    }
+    .hero p{margin:0;color:#d7c7bd;line-height:1.6}
+
+    .book-shell{
+      background:linear-gradient(90deg,#d5bd91 0,#f4e4c3 7%,#f8ebd1 50%,#f4e4c3 93%,#d5bd91 100%);
+      border-radius:28px;
+      padding:20px;
+      box-shadow:0 25px 60px rgba(0,0,0,.34), inset 0 0 0 1px rgba(255,255,255,.35);
+      position:relative;
+      overflow:hidden;
+    }
+    .book-shell:before{
+      content:"";
+      position:absolute;top:0;bottom:0;left:50%;width:2px;
+      background:linear-gradient(180deg,transparent,rgba(104,73,46,.26),transparent)
+    }
+    .book-top{
+      display:flex;align-items:center;justify-content:space-between;gap:16px;
+      padding:8px 8px 18px
+    }
+    .book-title{
+      font-family:Georgia,"Times New Roman",serif;
+      font-size:24px;font-weight:700
+    }
+    .counter{
+      font-size:13px;color:var(--muted);
+      background:rgba(255,255,255,.42);padding:8px 11px;border-radius:999px
+    }
+    .filters{
+      display:flex;flex-wrap:wrap;gap:8px;padding:0 8px 18px
+    }
+    .filter-btn{
+      border:1px solid #cbb58d;background:#fff8e9;color:#5e493c;
+      padding:9px 12px;border-radius:999px;cursor:pointer;font-size:13px
+    }
+    .filter-btn.active{
+      background:#6d4933;color:#fff;border-color:#6d4933
+    }
+    .entries{
+      display:grid;grid-template-columns:1fr 1fr;gap:18px;
+    }
+    .entry{
+      background:var(--paper);
+      border:1px solid #e2d0ac;
+      border-radius:18px;
+      padding:18px;
+      min-height:180px;
+      box-shadow:0 7px 18px rgba(78,53,37,.08);
+      display:flex;flex-direction:column
+    }
+    .entry-head{
+      display:flex;align-items:center;justify-content:space-between;gap:12px;
+      margin-bottom:12px
+    }
+    .tag{
+      display:inline-flex;align-items:center;gap:6px;
+      font-size:12px;font-weight:700;
+      padding:7px 10px;border-radius:999px;background:#ead9bc;color:#654631
+    }
+    .date{font-size:12px;color:#97816f}
+    .entry-text{
+      font-family:Georgia,"Times New Roman",serif;
+      font-size:18px;line-height:1.5;white-space:pre-wrap;
+      overflow-wrap:anywhere;flex:1
+    }
+    .entry-foot{
+      display:flex;justify-content:space-between;gap:12px;align-items:flex-end;
+      margin-top:16px;padding-top:12px;border-top:1px solid #eadfc9
+    }
+    .author{font-size:13px;font-weight:700;color:#624534}
+    .source{font-size:11px;color:#9a836f;text-align:right}
+    .empty,.loading,.error{
+      grid-column:1/-1;
+      background:rgba(255,249,235,.78);
+      border-radius:18px;
+      padding:34px 20px;text-align:center;color:#6e5748
+    }
+    .error{color:#8a3c32}
+    .note{
+      margin-top:18px;text-align:center;color:#d5c6bc;font-size:13px;line-height:1.5
+    }
+
+    @media(max-width:820px){
+      .topbar{align-items:flex-start;flex-direction:column}
+      .nav{justify-content:flex-start}
+      .entries{grid-template-columns:1fr}
+      .book-shell:before{display:none}
+    }
+    @media(max-width:560px){
+      .topbar{top:6px}
+      .page{padding:12px 10px 28px}
+      .topbar{border-radius:18px;padding:12px}
+      .brand{font-size:15px}
+      .nav{gap:4px}
+      .nav a{padding:8px 9px;font-size:13px}
+      .book-shell{padding:12px;border-radius:20px}
+      .book-top{align-items:flex-start;flex-direction:column}
+      .entry{padding:15px}
+      .entry-head{align-items:flex-start;flex-direction:column}
+      .date{margin-top:-4px}
+      .entry-text{font-size:17px}
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="topbar">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">☕</span>
+        <span>Кафе у Аркаши</span>
+      </a>
+      <nav class="nav">
+        <a href="index.html">Главная</a>
+        <a href="recipes.html">Рецепты</a>
+        <a class="active" href="feedback.html">Книга</a>
+        <a href="smoking-room.html">Курилка</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="eyebrow">Книга нашего кафе</div>
+      <h1>Жалобы, предложения<br>и хорошие мысли</h1>
+      <p>Сюда попадает то, что гости решили сохранить из разговоров в Курилке: предложения, жалобы, истории и советы. Рецепты живут отдельно — в разделе «Рецепты».</p>
+    </section>
+
+    <section class="book-shell">
+      <div class="book-top">
+        <div class="book-title">📖 Книга жалоб и предложений</div>
+        <div id="counter" class="counter">Загружаю записи…</div>
+      </div>
+
+      <div class="filters" id="filters">
+        <button class="filter-btn active" data-filter="Все">Все</button>
+        <button class="filter-btn" data-filter="Предложение">Предложения</button>
+        <button class="filter-btn" data-filter="Жалоба">Жалобы</button>
+        <button class="filter-btn" data-filter="История">Истории</button>
+        <button class="filter-btn" data-filter="Совет">Советы</button>
+      </div>
+
+      <div id="entries" class="entries">
+        <div class="loading">Открываю книгу…</div>
+      </div>
+    </section>
+
+    <div class="note">
+      Новая запись появляется здесь после отправки из Курилки кнопкой 📖. Если категория «Рецепт», запись автоматически отправляется в раздел «Рецепты гостей».
+    </div>
+  </main>
+
+  <script type="module">
+    import {initializeApp} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+    import {getDatabase,ref,onValue} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-database.js";
+
+    const firebaseConfig={
+      apiKey:"AIzaSyB60yxDm_FgW7JmeYAAr1covhkFaGk8-k8",
+      authDomain:"cafe-u-arkashi.firebaseapp.com",
+      databaseURL:"https://cafe-u-arkashi-default-rtdb.europe-west1.firebasedatabase.app",
+      projectId:"cafe-u-arkashi",
+      storageBucket:"cafe-u-arkashi.firebasestorage.app",
+      messagingSenderId:"589764953441",
+      appId:"1:589764953441:web:08ef627e7ef399e13b3120"
+    };
+
+    const app=initializeApp(firebaseConfig);
+    const database=getDatabase(app);
+    const bookRef=ref(database,"bookEntries");
+
+    const entriesEl=document.getElementById("entries");
+    const counterEl=document.getElementById("counter");
+    const filtersEl=document.getElementById("filters");
+
+    let entries=[];
+    let currentFilter="Все";
+
+    function normalizeTimestamp(value){
+      if(!value)return 0;
+      if(typeof value==="number")return value;
+      const parsed=Date.parse(value);
+      return Number.isNaN(parsed)?0:parsed;
+    }
+
+    function formatDate(value){
+      const ts=normalizeTimestamp(value);
+      if(!ts)return "дата не указана";
+      return new Date(ts).toLocaleString("ru-RU",{
+        day:"2-digit",month:"2-digit",year:"numeric",
+        hour:"2-digit",minute:"2-digit"
+      });
+    }
+
+    function categoryIcon(category){
+      const icons={
+        "Рецепт":"☕",
+        "Предложение":"💡",
+        "Жалоба":"📝",
+        "История":"📚",
+        "Совет":"👍"
+      };
+      return icons[category]||"📌";
+    }
+
+    function escapeHtml(text){
+      return String(text??"")
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+    }
+
+    function render(){
+      const filtered=currentFilter==="Все"
+        ? entries
+        : entries.filter(item=>item.category===currentFilter);
+
+      counterEl.textContent=`Записей: ${filtered.length}`;
+
+      if(!filtered.length){
+        entriesEl.innerHTML='<div class="empty">В этой категории пока пусто. Первая хорошая запись ещё впереди.</div>';
+        return;
+      }
+
+      entriesEl.innerHTML=filtered.map(item=>{
+        const category=item.category||"Без категории";
+        const source=item.sourceAuthor
+          ? `Из разговора · ${escapeHtml(item.sourceAuthor)}`
+          : "Добавлено в книгу";
+        return `
+          <article class="entry">
+            <div class="entry-head">
+              <span class="tag">${categoryIcon(category)} ${escapeHtml(category)}</span>
+              <span class="date">${formatDate(item.time)}</span>
+            </div>
+            <div class="entry-text">${escapeHtml(item.text)}</div>
+            <div class="entry-foot">
+              <div class="author">${escapeHtml(item.author||"Гость")}</div>
+              <div class="source">${source}</div>
+            </div>
+          </article>
+        `;
+      }).join("");
+    }
+
+    filtersEl.addEventListener("click",event=>{
+      const button=event.target.closest(".filter-btn");
+      if(!button)return;
+      document.querySelectorAll(".filter-btn").forEach(btn=>btn.classList.remove("active"));
+      button.classList.add("active");
+      currentFilter=button.dataset.filter;
+      render();
+    });
+
+    onValue(bookRef,snapshot=>{
+      const data=snapshot.val()||{};
+      entries=Object.entries(data)
+        .map(([id,value])=>({id,...value}))
+        .filter(item=>item.category!=="Рецепт");
+      entries.sort((a,b)=>normalizeTimestamp(b.time)-normalizeTimestamp(a.time));
+      render();
+    },error=>{
+      console.error(error);
+      counterEl.textContent="Ошибка загрузки";
+      entriesEl.innerHTML='<div class="error">Не удалось открыть книгу. Проверим подключение к Firebase и правила базы.</div>';
+    });
+  </script>
+</body>
+</html>
